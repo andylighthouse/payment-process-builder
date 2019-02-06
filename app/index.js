@@ -1,21 +1,10 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React from "react"
+import EStyleSheet from "react-native-extended-stylesheet"
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Building Rain City Rewards....</Text>
-      </View>
-    );
-  }
-}
+import Home from "./screens/Home"
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
-  }
-});
+EStyleSheet.build({
+  $primaryOrange: "#D57A66",
+})
+
+export default () => <Home />
