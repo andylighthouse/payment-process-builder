@@ -1,9 +1,10 @@
 import React, { Component } from "react"
-import { Text, StatusBar } from "react-native"
+import { Text, StatusBar, FlatList } from "react-native"
 import { connect } from "react-redux"
 
 import { Container } from "../components/Container"
 import { Button } from "../components/Buttons"
+import { ListItem } from "../components/ListItem"
 
 import { getData } from "../actions/button"
 
