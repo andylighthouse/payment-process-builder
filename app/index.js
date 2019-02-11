@@ -5,6 +5,7 @@ import { Provider } from "react-redux"
 import Home from "./screens/Home"
 import FundingSource from "./screens/FundingSource"
 import store from "./config/store"
+import Navigator from "./config/routes"
 
 EStyleSheet.build({
   $primaryOrange: "#D57A66",
@@ -15,7 +16,7 @@ EStyleSheet.build({
 })
 
 export default () => (
-  // <Provider store={store}>
-  <FundingSource />
-  // </Provider>
+  <Provider store={store}>
+    <Navigator />
+  </Provider>
 )

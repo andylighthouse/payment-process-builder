@@ -1,8 +1,7 @@
 import React, { Component } from "react"
-import { Text, StatusBar, FlatList, View } from "react-native"
+import { ScrollView, Text, StatusBar, FlatList, View } from "react-native"
 
 import { ListItem } from "../components/ListItem"
-import { Header } from "../components/Header"
 import { Separator } from "../components/ListItem"
 
 const fundingSourceOptions = ["Account", "CreditCard", "MccFilter", "Lock", "FundInOrder", "Split"]
@@ -14,17 +13,17 @@ class FundingSource extends Component {
 
   render() {
     return (
-      <View>
-        {/* <StatusBar translucent={false} barStyle="default" /> */}
-        <Header />
+      <ScrollView>
+        <StatusBar translucent={false} barStyle="default" />
         <FlatList
           data={fundingSourceOptions}
           renderItem={({ item }) => (
             <ListItem text={item} onPress={() => this.handleOnPress(item)} />
           )}
+          keyExtractor={item => item}
+          ItemSeparatorComponent={Separator}
         />
-        <Separator />
-      </View>
+      </ScrollView>
     )
   }
 }
