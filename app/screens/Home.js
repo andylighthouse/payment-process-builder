@@ -4,7 +4,7 @@ import { connect } from "react-redux"
 
 import { Container } from "../components/Container"
 import { Button } from "../components/Buttons"
-import { ListItem } from "../components/ListItem"
+import { Header } from "../components/Header"
 
 import { getData } from "../actions/button"
 
@@ -18,6 +18,7 @@ class Home extends Component {
     return (
       <Container>
         <StatusBar translucent={false} barStyle="light-content" />
+        <Header />
         <Text>Under Construction: Rain City Rewards</Text>
         <Button onPress={this.handleOnPress} />
       </Container>

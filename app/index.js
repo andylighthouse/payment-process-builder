@@ -9,6 +9,9 @@ import store from "./config/store"
 EStyleSheet.build({
   $primaryOrange: "#D57A66",
   $lightGrey: "#F0F0F0",
+  $separator: "#E2E2E2",
+
+  // $outline: 1,
 })
 
 export default () => (

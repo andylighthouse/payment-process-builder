@@ -2,9 +2,10 @@ import React, { Component } from "react"
 import { Text, StatusBar, FlatList, View } from "react-native"
 
 import { ListItem } from "../components/ListItem"
-import { Container } from "../components/Container"
+import { Header } from "../components/Header"
+import { Separator } from "../components/ListItem"
 
-const fuck = ["Account", "CreditCard", "MccFilter", "Lock", "FundInOrder", "Split"]
+const fundingSourceOptions = ["Account", "CreditCard", "MccFilter", "Lock", "FundInOrder", "Split"]
 
 class FundingSource extends Component {
   handleOnPress = () => {
@@ -14,13 +15,15 @@ class FundingSource extends Component {
   render() {
     return (
       <View>
-        <StatusBar translucent={false} barStyle="default" />
+        {/* <StatusBar translucent={false} barStyle="default" /> */}
+        <Header />
         <FlatList
-          data={fuck}
+          data={fundingSourceOptions}
           renderItem={({ item }) => (
             <ListItem text={item} onPress={() => this.handleOnPress(item)} />
           )}
         />
+        <Separator />
       </View>
     )
   }
