@@ -1,25 +1,35 @@
 import React, { Component } from "react"
-import { Text, StatusBar } from "react-native"
+import { Text, StatusBar, View } from "react-native"
 import { connect } from "react-redux"
 
 import { Container } from "../components/Container"
 import { Button } from "../components/Buttons"
-import { Header } from "../components/Header"
 
 class Home extends Component {
   handleOnPress = () => {
-    console.log("button pressed")
     this.props.navigation.navigate("FundingSource", { title: "Choose a funding source" })
   }
 
   render() {
+    const { jsonBuild, isBuilding } = this.props
+
     return (
       <Container>
         <StatusBar translucent={false} barStyle="light-content" />
-        <Button onPress={this.handleOnPress} text={"Build"} />
+        {/* <Text>{JSON.stringify(jsonBuild)}</Text> */}
+        {isBuilding && <Button onPress={this.handleOnPress} text={"Build"} />}
       </Container>
     )
   }
 }
 
-export default connect()(Home)
+const mapStateToProps = state => {
+  const jsonBuild = state.build.build
+  const isBuilding = state.build.isBuilding
+  return {
+    jsonBuild,
+    isBuilding,
+  }
+}
+
+export default connect(mapStateToProps)(Home)

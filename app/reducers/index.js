@@ -1,7 +1,7 @@
 import { combineReducers } from "redux"
 
-import button from "./button"
+import build from "./build"
 
 export default combineReducers({
-  button,
+  build,
 })

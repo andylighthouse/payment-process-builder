@@ -2,6 +2,9 @@ import { createStackNavigator, createAppContainer } from "react-navigation"
 
 import FundingSource from "../screens/FundingSource"
 import Home from "../screens/Home"
+import Account from "../screens/Account"
+import CreditCard from "../screens/CreditCard"
+import MccFilter from "../screens/MccFilter"
 
 const HomeStack = createStackNavigator(
   {
@@ -11,6 +14,24 @@ const HomeStack = createStackNavigator(
     },
     FundingSource: {
       screen: FundingSource,
+      navigationOptions: ({ navigation }) => ({
+        headerTitle: navigation.state.params.title,
+      }),
+    },
+    Account: {
+      screen: Account,
+      navigationOptions: ({ navigation }) => ({
+        headerTitle: navigation.state.params.title,
+      }),
+    },
+    CreditCard: {
+      screen: CreditCard,
+      navigationOptions: ({ navigation }) => ({
+        headerTitle: navigation.state.params.title,
+      }),
+    },
+    MccFilter: {
+      screen: MccFilter,
       navigationOptions: ({ navigation }) => ({
         headerTitle: navigation.state.params.title,
       }),

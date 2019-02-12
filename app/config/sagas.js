@@ -1,6 +1,6 @@
 import { takeEvery, call, put } from "redux-saga/effects"
 
-import { GET_DATA, CONVERSION_ERROR, CONVERSION_RESULT } from "../actions/button"
+import { GET_DATA, CONVERSION_ERROR, CONVERSION_RESULT } from "../actions/build"
 
 const getDataUrl = () => fetch(`http://localhost:3000/users/6/accounts.json`)
 

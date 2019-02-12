@@ -1,24 +1,29 @@
 import React, { Component } from "react"
-import { ScrollView, Text, StatusBar, FlatList, View } from "react-native"
+import { ScrollView, StatusBar, FlatList } from "react-native"
+import { connect } from "react-redux"
 
 import { ListItem } from "../components/ListItem"
 import { Separator } from "../components/ListItem"
 
+import { pickFundingSource } from "../actions/build"
+
 const fundingSourceOptions = ["Account", "CreditCard", "MccFilter", "Lock", "FundInOrder", "Split"]
 
 class FundingSource extends Component {
-  handleOnPress = () => {
-    console.log("funding source pressed")
+  handleOnPress = (item, currentState) => {
+    this.props.dispatch(pickFundingSource(item, currentState))
+    this.props.navigation.navigate(item, { title: item })
   }
 
   render() {
+    const { currentState } = this.props
     return (
       <ScrollView>
         <StatusBar translucent={false} barStyle="default" />
         <FlatList
           data={fundingSourceOptions}
           renderItem={({ item }) => (
-            <ListItem text={item} onPress={() => this.handleOnPress(item)} />
+            <ListItem text={item} onPress={() => this.handleOnPress(item, currentState)} />
           )}
           keyExtractor={item => item}
           ItemSeparatorComponent={Separator}
@@ -28,4 +33,10 @@ class FundingSource extends Component {
   }
 }
 
-export default FundingSource
+const mapStateToProps = state => {
+  return {
+    currentState: state.build.build,
+  }
+}
+
+export default connect(mapStateToProps)(FundingSource)
