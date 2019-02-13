@@ -39,7 +39,7 @@ const updateBuild = (state, action) => {
   let newState = recursiveLookup(state, state.count)
 
   newState.auth_with.push({
-    type: action.fundingSource,
+    _type: action.fundingSource,
     id: action.id,
     step: state.count,
     auth_with: [],
