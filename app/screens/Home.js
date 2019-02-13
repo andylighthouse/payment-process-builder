@@ -24,7 +24,7 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => {
-  const jsonBuild = state.build.build
+  const jsonBuild = state.build
 
   return {
     jsonBuild,

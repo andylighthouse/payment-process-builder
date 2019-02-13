@@ -18,38 +18,32 @@ const recursiveLookup = (state, count) => {
   if (root.auth_with) {
     for (var k in root.auth_with) {
       if (root.auth_with[k].step == step) {
-        state.count += "1"
-        debugger
         return root.auth_with[k]
       } else if (root.auth_with.length) {
-        state.count += "1"
-        debugger
         return recursiveLookup(root.auth_with[k], step)
       }
     }
   } else {
-    state.count += "1"
-    root.auth_with = []
-    debugger
     return root
   }
 }
 
 const updateBuild = (state, action) => {
+  let step = state.count
   let newState = recursiveLookup(state, state.count)
 
+  if (newState.auth_with === undefined) {
+    newState.auth_with = []
+  }
   newState.auth_with.push({
     _type: action.fundingSource,
     id: action.id,
-    step: state.count,
-    auth_with: [],
+    step: step,
   })
-  return newState
+
+  state.count = state.count += "1"
+  return { ...state }
 }
-
-const updateAccountId = () => {}
-
-const updateCreditCardId = () => {}
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {

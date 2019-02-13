@@ -7,7 +7,7 @@ import { saveAccountId } from "../actions/build"
 
 class Account extends Component {
   handleOnPress = () => {
-    this.props.navigation.popToTop()
+    this.props.navigation.navigate("Home")
   }
 
   handleTextChange = id => {
