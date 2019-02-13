@@ -11,7 +11,7 @@ const fundingSourceOptions = ["Account", "CreditCard", "MccFilter", "Lock", "Fun
 
 class FundingSource extends Component {
   handleOnPress = (item, currentState) => {
-    this.props.dispatch(pickFundingSource(item, currentState))
+    // this.props.dispatch(pickFundingSource(item, currentState))
     this.props.navigation.navigate(item, { title: item })
   }
 

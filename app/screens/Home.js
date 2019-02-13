@@ -17,7 +17,7 @@ class Home extends Component {
       <Container>
         <StatusBar translucent={false} barStyle="light-content" />
         {/* <Text>{JSON.stringify(jsonBuild)}</Text> */}
-        {isBuilding && <Button onPress={this.handleOnPress} text={"Build"} />}
+        <Button onPress={this.handleOnPress} text={"Build"} />
       </Container>
     )
   }
