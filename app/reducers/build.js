@@ -9,35 +9,38 @@ import {
 } from "../actions/build"
 
 const initialState = {
-  ob: { step: "1" },
+  count: "1",
 }
-
-const updateBuild = (state, action) => {
+const recursiveLookup = (state, count) => {
   let root = state
-  let step = state.ob.step
-  currentNode = null
+  let step = count
   debugger
-  if (root.ob.auth_with) {
-    for (var k in root.ob.auth_with) {
-      if (root.ob.auth_with[k].step == step) {
-        currentNode = root.ob.auth_with[k]
-      } else if (root.ob.auth_with.length) {
-        currentNode = findObjectById(root.ob.auth_with[k], step)
+  if (root.auth_with) {
+    for (var k in root.auth_with) {
+      if (root.auth_with[k].step == step) {
+        state.count += "1"
+        return root.auth_with[k]
+      } else if (root.auth_with.length) {
+        state.count += "1"
+        return recursiveLookup(root.auth_with[k], step)
       }
     }
   } else {
-    root.ob.auth_with = []
-    currentNode = root.ob
+    root.auth_with = []
+    return root
   }
+}
 
-  currentNode.auth_with.push({
+const updateBuild = (state, action) => {
+  let newState = recursiveLookup(state, state.count)
+
+  newState.auth_with.push({
     type: action.fundingSource,
     id: action.id,
-    step: state.ob.step,
+    step: state.count,
     auth_with: [],
   })
-  state.ob.step += "1"
-  return currentNode
+  return newState
 }
 
 const updateAccountId = () => {}
@@ -58,17 +61,11 @@ const reducer = (state = initialState, action) => {
     case PICK_FUNDING_SOURCE:
       return { ...state }
     case SAVE_ACCOUNT_ID:
-      return {
-        ...state,
-
-        auth_with: updateBuild(state, action),
-      }
+      return updateBuild(state, action)
     case SAVE_CREDIT_CARD_ID:
-      return { ...state, build: { ...state.build, id: action.id, _type: action.fundingSource } }
+      return updateBuild(state, action)
     case SAVE_MCCFILTER_ID:
-      return {
-        ob: updateBuild(state, action),
-      }
+      return updateBuild(state, action)
     default:
       return state
   }
