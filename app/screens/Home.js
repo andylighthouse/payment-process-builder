@@ -11,12 +11,12 @@ class Home extends Component {
   }
 
   render() {
-    const { jsonBuild, isBuilding } = this.props
+    const { jsonBuild } = this.props
 
     return (
       <Container>
         <StatusBar translucent={false} barStyle="light-content" />
-        {/* <Text>{JSON.stringify(jsonBuild)}</Text> */}
+        <Text>{JSON.stringify(jsonBuild)}</Text>
         <Button onPress={this.handleOnPress} text={"Build"} />
       </Container>
     )
@@ -25,10 +25,9 @@ class Home extends Component {
 
 const mapStateToProps = state => {
   const jsonBuild = state.build.build
-  const isBuilding = state.build.isBuilding
+
   return {
     jsonBuild,
-    isBuilding,
   }
 }
 

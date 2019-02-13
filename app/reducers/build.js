@@ -14,19 +14,23 @@ const initialState = {
 const recursiveLookup = (state, count) => {
   let root = state
   let step = count
-  debugger
+
   if (root.auth_with) {
     for (var k in root.auth_with) {
       if (root.auth_with[k].step == step) {
         state.count += "1"
+        debugger
         return root.auth_with[k]
       } else if (root.auth_with.length) {
         state.count += "1"
+        debugger
         return recursiveLookup(root.auth_with[k], step)
       }
     }
   } else {
+    state.count += "1"
     root.auth_with = []
+    debugger
     return root
   }
 }
