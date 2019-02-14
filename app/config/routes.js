@@ -5,6 +5,7 @@ import Home from "../screens/Home"
 import Account from "../screens/Account"
 import CreditCard from "../screens/CreditCard"
 import MccFilter from "../screens/MccFilter"
+import Lock from "../screens/Lock"
 
 const HomeStack = createStackNavigator(
   {
@@ -32,6 +33,12 @@ const HomeStack = createStackNavigator(
     },
     MccFilter: {
       screen: MccFilter,
+      navigationOptions: ({ navigation }) => ({
+        headerTitle: navigation.state.params.title,
+      }),
+    },
+    Lock: {
+      screen: Lock,
       navigationOptions: ({ navigation }) => ({
         headerTitle: navigation.state.params.title,
       }),

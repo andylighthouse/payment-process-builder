@@ -5,7 +5,7 @@ export const PICK_FUNDING_SOURCE = "PICK_FUNDING_SOURCE"
 export const SAVE_ACCOUNT_ID = "SAVE_ACCOUNT_ID"
 export const SAVE_CREDIT_CARD_ID = "SAVE_CREDIT_CARD_ID"
 export const SAVE_MCCFILTER_ID = "SAVE_MCCFILTER_ID"
-// import store from "../config/store"
+export const SAVE_LOCK_ID = "SAVE_LOCK_ID"
 
 export const getData = () => ({
   type: GET_DATA,
@@ -35,4 +35,9 @@ export const saveMccFilterId = id => ({
   id: id,
   fundingSource: "MccFilter",
 })
-// console.log(store.getState())
+
+export const saveLockId = id => ({
+  type: SAVE_LOCK_ID,
+  id: id,
+  fundingSource: "Lock",
+})

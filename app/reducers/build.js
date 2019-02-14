@@ -6,6 +6,8 @@ import {
   SAVE_ACCOUNT_ID,
   SAVE_CREDIT_CARD_ID,
   SAVE_MCCFILTER_ID,
+  SAVE_LOCK_ID,
+  saveLockId,
 } from "../actions/build"
 
 const initialState = {
@@ -63,6 +65,8 @@ const reducer = (state = initialState, action) => {
     case SAVE_CREDIT_CARD_ID:
       return updateBuild(state, action)
     case SAVE_MCCFILTER_ID:
+      return updateBuild(state, action)
+    case SAVE_LOCK_ID:
       return updateBuild(state, action)
     default:
       return state

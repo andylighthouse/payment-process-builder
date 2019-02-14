@@ -24,10 +24,4 @@ class MccFilter extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    currentState: state.build.build,
-  }
-}
-
-export default connect(mapStateToProps)(MccFilter)
+export default connect()(MccFilter)

@@ -5,25 +5,21 @@ import { connect } from "react-redux"
 import { ListItem } from "../components/ListItem"
 import { Separator } from "../components/ListItem"
 
-import { pickFundingSource } from "../actions/build"
-
 const fundingSourceOptions = ["Account", "CreditCard", "MccFilter", "Lock", "FundInOrder", "Split"]
 
 class FundingSource extends Component {
-  handleOnPress = (item, currentState) => {
-    // this.props.dispatch(pickFundingSource(item, currentState))
+  handleOnPress = item => {
     this.props.navigation.navigate(item, { title: item })
   }
 
   render() {
-    const { currentState } = this.props
     return (
       <ScrollView>
         <StatusBar translucent={false} barStyle="default" />
         <FlatList
           data={fundingSourceOptions}
           renderItem={({ item }) => (
-            <ListItem text={item} onPress={() => this.handleOnPress(item, currentState)} />
+            <ListItem text={item} onPress={() => this.handleOnPress(item)} />
           )}
           keyExtractor={item => item}
           ItemSeparatorComponent={Separator}
@@ -33,10 +29,4 @@ class FundingSource extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    currentState: state.build.build,
-  }
-}
-
-export default connect(mapStateToProps)(FundingSource)
+export default connect()(FundingSource)
