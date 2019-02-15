@@ -7,6 +7,11 @@ import { Button } from "../components/Buttons"
 class Account extends Component {
   handleOnPress = () => {
     this.props.navigation.navigate("Home")
+    let tree = this.props.navigation.getParam("tree")
+    let currentNode = this.props.navigation.getParam("currentNode")
+
+    // currentNode {"_type":"Lock","id":"5"}
+    // tree   {"auth_with":{"_type":"Lock","id":"5"}}
   }
 
   handleTextChange = id => {
