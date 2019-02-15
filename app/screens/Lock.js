@@ -3,15 +3,20 @@ import { Text, TextInput, View } from "react-native"
 import { connect } from "react-redux"
 
 import { Button } from "../components/Buttons"
-import { saveLockId } from "../actions/build"
 
-class MccFilter extends Component {
-  handleOnPress = () => {
-    this.props.navigation.navigate("FundingSource")
+class Lock extends Component {
+  handleOnPress = id => {
+    let tree = this.props.navigation.getParam("tree")
+    let currentNode = this.props.navigation.getParam("currentNode")
+
+    currentNode = { _type: "Lock", id: id }
+    tree = { auth_with: { _type: "Lock", id: id } }
+
+    this.props.navigation.navigate("FundingSource", { currentNode, tree })
   }
 
   handleTextChange = id => {
-    this.props.dispatch(saveLockId(id))
+    this.handleOnPress(id)
   }
   render() {
     return (
@@ -24,4 +29,4 @@ class MccFilter extends Component {
   }
 }
 
-export default connect()(MccFilter)
+export default connect()(Lock)

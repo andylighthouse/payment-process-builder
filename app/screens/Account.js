@@ -3,7 +3,6 @@ import { Text, TextInput, View } from "react-native"
 import { connect } from "react-redux"
 
 import { Button } from "../components/Buttons"
-import { saveAccountId } from "../actions/build"
 
 class Account extends Component {
   handleOnPress = () => {
@@ -11,9 +10,13 @@ class Account extends Component {
   }
 
   handleTextChange = id => {
-    this.props.dispatch(saveAccountId(id))
+    this.handleOnPress(id)
   }
   render() {
+    let tree = this.props.navigation.getParam("tree")
+    let currentNode = this.props.navigation.getParam("currentNode")
+    console.log("Account   " + JSON.stringify(currentNode))
+    console.log("Account   " + JSON.stringify(tree))
     return (
       <View>
         <Text>Enter account id</Text>

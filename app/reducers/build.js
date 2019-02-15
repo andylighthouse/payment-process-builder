@@ -7,7 +7,6 @@ import {
   SAVE_CREDIT_CARD_ID,
   SAVE_MCCFILTER_ID,
   SAVE_LOCK_ID,
-  saveLockId,
 } from "../actions/build"
 
 const initialState = {

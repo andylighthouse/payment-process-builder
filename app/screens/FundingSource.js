@@ -9,7 +9,14 @@ const fundingSourceOptions = ["Account", "CreditCard", "MccFilter", "Lock", "Fun
 
 class FundingSource extends Component {
   handleOnPress = item => {
-    this.props.navigation.navigate(item, { title: item })
+    let tree = this.props.navigation.getParam("tree")
+    let currentNode = this.props.navigation.getParam("currentNode")
+
+    // if (currentNode) {
+    //   currentNode.auth_with = { _type: item }
+    // }
+
+    this.props.navigation.navigate(item, { title: item, currentNode, tree })
   }
 
   render() {
