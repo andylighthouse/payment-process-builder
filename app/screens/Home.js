@@ -9,17 +9,24 @@ class Home extends Component {
   constructor() {
     super()
 
-    this.state = {}
+    this.state = {
+      authWith: {},
+    }
+  }
+
+  handleChange = authWith => {
+    this.setState({ authWith: authWith })
   }
 
   handleOnPress = () => {
     this.props.navigation.navigate("FundingSource", {
-      title: "Choose a funding source",
-      tree: this.state,
+      data: { ...this.state.authWith },
+      onChange: this.handleChange,
     })
   }
 
   render() {
+    console.log("DATA" + JSON.stringify(this.state))
     return (
       <Container>
         <StatusBar translucent={false} barStyle="light-content" />

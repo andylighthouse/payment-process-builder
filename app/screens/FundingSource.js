@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { ScrollView, StatusBar, FlatList } from "react-native"
+import { ScrollView, StatusBar, FlatList, Button } from "react-native"
 import { connect } from "react-redux"
 
 import { ListItem } from "../components/ListItem"
@@ -9,14 +9,27 @@ const fundingSourceOptions = ["Account", "CreditCard", "MccFilter", "Lock", "Fun
 
 class FundingSource extends Component {
   handleOnPress = item => {
-    let tree = this.props.navigation.getParam("tree")
-    let currentNode = this.props.navigation.getParam("currentNode")
-
-    // if (currentNode) {
-    //   currentNode.auth_with = { _type: item }
-    // }
-
-    this.props.navigation.navigate(item, { title: item, currentNode, tree })
+    let authWith = this.props.navigation.getParam("authWith")
+    if (authWith) {
+      console.log("second")
+      console.log("TINA" + JSON.stringify(authWith))
+      let onChange = this.props.navigation.getParam("onChange")
+      onChange({ ...authWith, authWith: {} })
+      this.props.navigation.navigate(item, {
+        data: { ...authWith },
+        onChange: onChange,
+      })
+    } else {
+      console.log("first")
+      let onChange = this.props.navigation.getParam("onChange")
+      let authWith = { _type: item }
+      onChange(authWith)
+      this.props.navigation.navigate(item, {
+        data: { ...authWith },
+        onChange: onChange,
+      })
+      console.log("TINA" + JSON.stringify(authWith))
+    }
   }
 
   render() {
