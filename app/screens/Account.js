@@ -5,28 +5,18 @@ import { connect } from "react-redux"
 import { Button } from "../components/Buttons"
 
 class Account extends Component {
-  handleOnPress = () => {
-    this.props.navigation.navigate("Home")
-    let tree = this.props.navigation.getParam("tree")
-    let currentNode = this.props.navigation.getParam("currentNode")
-
-    // currentNode {"_type":"Lock","id":"5"}
-    // tree   {"auth_with":{"_type":"Lock","id":"5"}}
-  }
-
   handleTextChange = id => {
-    this.handleOnPress(id)
+    let onChange = this.props.navigation.getParam("onChange")
+    let data = this.props.navigation.getParam("data")
+    onChange({ ...data, id: id })
+    this.props.navigation.navigate("Home")
   }
   render() {
-    let tree = this.props.navigation.getParam("tree")
-    let currentNode = this.props.navigation.getParam("currentNode")
-    console.log("Account   " + JSON.stringify(currentNode))
-    console.log("Account   " + JSON.stringify(tree))
+    console.log(JSON.stringify(this.props.navigation.getParam("data")))
     return (
       <View>
         <Text>Enter account id</Text>
         <TextInput style={{ backgroundColor: "grey" }} onChangeText={this.handleTextChange} />
-        <Button text="Done" onPress={this.handleOnPress} />
       </View>
     )
   }

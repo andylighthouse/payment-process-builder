@@ -1,21 +1,24 @@
 import React, { Component } from "react"
-import { StatusBar } from "react-native"
+import { StatusBar, ScrollView } from "react-native"
 import { connect } from "react-redux"
+import { Card, ListItem, Icon } from "react-native-elements"
 
 import { Container } from "../components/Container"
 import { Button } from "../components/Buttons"
+import { PaymentProcessBuilder } from "../components/Text"
+import { Header } from "../components/Header"
 
 class Home extends Component {
   constructor() {
     super()
 
     this.state = {
-      authWith: {},
+      data: {},
     }
   }
 
   handleChange = authWith => {
-    this.setState({ authWith: authWith })
+    this.setState({ data: authWith })
   }
 
   handleOnPress = () => {
@@ -25,12 +28,23 @@ class Home extends Component {
     })
   }
 
+  // display: "flex",
+  //   flexDirection: "column",
+
   render() {
     console.log("DATA" + JSON.stringify(this.state))
     return (
       <Container>
         <StatusBar translucent={false} barStyle="light-content" />
-        <Button onPress={this.handleOnPress} text={"Build"} />
+        <Header />
+        <PaymentProcessBuilder />
+        <ScrollView>
+          <ListItem title={"hello"} />
+          <ListItem title={"hello"} />
+          <ListItem title={"hello"} />
+          <ListItem title={"hello"} />
+          <ListItem title={"hello"} />
+        </ScrollView>
       </Container>
     )
   }

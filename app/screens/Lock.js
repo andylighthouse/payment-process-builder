@@ -15,6 +15,8 @@ class Lock extends Component {
     })
   }
   render() {
+    console.log("LOCK" + JSON.stringify(this.props.navigation.getParam("data")))
+    // console.log("onChange" + this.props.navigation.getParam("onChange"))
     return (
       <View>
         <Text>Enter Lock id</Text>
