@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import { StatusBar, ScrollView, Button, View, Text } from "react-native"
 import { connect } from "react-redux"
 import { Card } from "react-native-elements"
+import JSONTree from "react-native-json-tree"
 
 import { Container } from "../components/Container"
 import { PaymentProcess } from "../components/PaymentProcess"
@@ -39,11 +40,7 @@ class Home extends Component {
             onPress={this.handleOnPress}
             title={this.state.showJSON ? "Hide JSON" : "Show JSON"}
           />
-          {this.state.showJSON && (
-            <Card>
-              <Text>{JSON.stringify(this.state.data)}</Text>
-            </Card>
-          )}
+          {this.state.showJSON && <Card>{<JSONTree data={this.state.data} />}</Card>}
         </ScrollView>
       </Container>
     )
