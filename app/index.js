@@ -3,7 +3,7 @@ import EStyleSheet from "react-native-extended-stylesheet"
 import { Provider } from "react-redux"
 
 import store from "./config/store"
-import Navigator from "./config/routes"
+import Home from "./screens/Home"
 
 EStyleSheet.build({
   $primaryOrange: "#D57A66",
@@ -16,6 +16,6 @@ EStyleSheet.build({
 
 export default () => (
   <Provider store={store}>
-    <Navigator />
+    <Home />
   </Provider>
 )

@@ -6,9 +6,7 @@ import { Button } from "../components/Buttons"
 import { saveMccFilterId } from "../actions/build"
 
 class MccFilter extends Component {
-  handleOnPress = () => {
-    this.props.navigation.navigate("FundingSource")
-  }
+  handleOnPress = () => {}
 
   handleTextChange = id => {
     this.props.dispatch(saveMccFilterId(id))

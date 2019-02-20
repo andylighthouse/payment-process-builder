@@ -1,12 +1,17 @@
 import React, { Component } from "react"
-import { StatusBar, ScrollView } from "react-native"
+import EStyleSheet from "react-native-extended-stylesheet"
+import { StatusBar, ScrollView, Text, View, Button, ListItem } from "react-native"
 import { connect } from "react-redux"
-import { Card, ListItem, Icon } from "react-native-elements"
+import { Card, Icon } from "react-native-elements"
 
 import { Container } from "../components/Container"
-import { Button } from "../components/Buttons"
+import { PaymentProcess } from "../components/PaymentProcess"
 import { PaymentProcessBuilder } from "../components/Text"
 import { Header } from "../components/Header"
+
+const styles = EStyleSheet.create({
+  $orange: "$primaryOrange",
+})
 
 class Home extends Component {
   constructor() {
@@ -17,34 +22,18 @@ class Home extends Component {
     }
   }
 
-  handleChange = authWith => {
-    this.setState({ data: authWith })
+  handleChange = data => {
+    this.setState({ data: data })
   }
-
-  handleOnPress = () => {
-    this.props.navigation.navigate("FundingSource", {
-      data: { ...this.state.authWith },
-      onChange: this.handleChange,
-    })
-  }
-
-  // display: "flex",
-  //   flexDirection: "column",
 
   render() {
-    console.log("DATA" + JSON.stringify(this.state))
+    console.log(JSON.stringify(this.state))
     return (
       <Container>
         <StatusBar translucent={false} barStyle="light-content" />
         <Header />
         <PaymentProcessBuilder />
-        <ScrollView>
-          <ListItem title={"hello"} />
-          <ListItem title={"hello"} />
-          <ListItem title={"hello"} />
-          <ListItem title={"hello"} />
-          <ListItem title={"hello"} />
-        </ScrollView>
+        <PaymentProcess {...this.state.data} onChange={this.handleChange} />
       </Container>
     )
   }

@@ -1,29 +1,45 @@
 import React, { Component } from "react"
 import { Text, TextInput, View } from "react-native"
 import { connect } from "react-redux"
+import { Card, Icon } from "react-native-elements"
 
 import { Button } from "../components/Buttons"
+import AddSource from "./AddSource"
+import FundingSource from "./FundingSource"
 
-class Lock extends Component {
-  handleTextChange = id => {
-    let onChange = this.props.navigation.getParam("onChange")
-    let data = this.props.navigation.getParam("data")
-    onChange({ ...data, id: id })
-    this.props.navigation.navigate("FundingSource", {
-      authWith: { ...data, id: id },
-      onChange: onChange,
+export default ({ id, authWith, onChange }) => {
+  const handleSelectChanged = id => {
+    onChange({
+      _type: "Lock",
+      id: id,
+      authWith: authWith,
     })
   }
-  render() {
-    console.log("LOCK" + JSON.stringify(this.props.navigation.getParam("data")))
-    // console.log("onChange" + this.props.navigation.getParam("onChange"))
-    return (
-      <View>
-        <Text>Enter Lock id</Text>
-        <TextInput style={{ backgroundColor: "grey" }} onChangeText={this.handleTextChange} />
-      </View>
-    )
+  const handleFundingSourceChanged = data => {
+    console.log("SANITYCHECK2: " + JSON.stringify({ id: id }))
+    onChange({
+      _type: "Lock",
+      id: id,
+      authWith: data,
+    })
   }
-}
+  return (
+    <View>
+      <Card containerStyle={{ width: "90%" }}>
+        <Text>LOCK</Text>
+        <Text>Enter Lock id:</Text>
+        <TextInput style={{ backgroundColor: "grey" }} onChangeText={handleSelectChanged} />
+      </Card>
 
-export default connect()(Lock)
+      {id && (
+        <View>
+          {authWith ? (
+            <FundingSource {...authWith} onChange={handleFundingSourceChanged} />
+          ) : (
+            <AddSource text="Add Funding Source" onAdd={handleFundingSourceChanged} />
+          )}
+        </View>
+      )}
+    </View>
+  )
+}

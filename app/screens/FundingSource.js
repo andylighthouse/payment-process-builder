@@ -1,28 +1,27 @@
-import React, { Component } from "react"
-import { ScrollView, StatusBar, FlatList, Button } from "react-native"
-import { connect } from "react-redux"
+import React from "react"
+import Lock from "../screens/Lock"
+import FundInOrder from "../screens/FundInOrder"
+import MccFilter from "../screens/MccFilter"
+import Account from "../screens/Account"
+import CreditCard from "../screens/CreditCard"
+import Split from "../screens/Split"
+import { StatusBar, ScrollView, Text, View, Button, ListItem } from "react-native"
+// import { ListItem } from "../components/ListItem"
 
-import { ListItem } from "../components/ListItem"
-import { Separator } from "../components/ListItem"
-
-const fundingSourceOptions = ["Account", "CreditCard", "MccFilter", "Lock", "FundInOrder", "Split"]
-
-class FundingSource extends Component {
-  render() {
-    return (
-      <ScrollView>
-        <StatusBar translucent={false} barStyle="default" />
-        <FlatList
-          data={fundingSourceOptions}
-          renderItem={({ item }) => (
-            <ListItem text={item} onPress={() => this.handleOnPress(item)} />
-          )}
-          keyExtractor={item => item}
-          ItemSeparatorComponent={Separator}
-        />
-      </ScrollView>
-    )
+export default ({ _type, onChange, ...props }) => {
+  const fundingSources = {
+    Lock: Lock,
+    FundInOrder: FundInOrder,
+    MccFilter: MccFilter,
+    Account: Account,
+    CreditCard: CreditCard,
+    Split: Split,
   }
+
+  const Component = fundingSources[_type]
+
+  console.log("PASS TO COMPONENET STUFF INSIDE OBJECT: " + JSON.stringify({ ...props }))
+  return <View>{Component && <Component {...props} onChange={onChange} />}</View>
 }
 
-export default connect()(FundingSource)
+// /* <ListItem>{Component && <Component {...props} onChange={onChange} />}</ListItem> */
