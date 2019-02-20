@@ -11,7 +11,7 @@ EStyleSheet.build({
   $separator: "#E2E2E2",
   $white: "#FFFFFF",
 
-  $outline: 1,
+  // $outline: 1,
 })
 
 export default () => (

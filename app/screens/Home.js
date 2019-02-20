@@ -1,6 +1,7 @@
 import React, { Component } from "react"
-import { StatusBar } from "react-native"
+import { StatusBar, ScrollView, Button, View, Text } from "react-native"
 import { connect } from "react-redux"
+import { Card } from "react-native-elements"
 
 import { Container } from "../components/Container"
 import { PaymentProcess } from "../components/PaymentProcess"
@@ -13,6 +14,7 @@ class Home extends Component {
 
     this.state = {
       data: {},
+      showJSON: false,
     }
   }
 
@@ -20,14 +22,29 @@ class Home extends Component {
     this.setState({ data: data })
   }
 
+  handleOnPress = () => {
+    this.setState({ showJSON: !this.state.showJSON })
+  }
+
   render() {
     console.log(JSON.stringify(this.state))
     return (
       <Container>
         <StatusBar translucent={false} barStyle="light-content" />
-        <Header />
-        <PaymentProcessBuilder />
-        <PaymentProcess {...this.state.data} onChange={this.handleChange} />
+        <ScrollView>
+          <Header />
+          <PaymentProcessBuilder />
+          <PaymentProcess {...this.state.data} onChange={this.handleChange} />
+          <Button
+            onPress={this.handleOnPress}
+            title={this.state.showJSON ? "Hide JSON" : "Show JSON"}
+          />
+          {this.state.showJSON && (
+            <Card>
+              <Text>{JSON.stringify(this.state.data)}</Text>
+            </Card>
+          )}
+        </ScrollView>
       </Container>
     )
   }

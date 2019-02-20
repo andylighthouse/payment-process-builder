@@ -1,5 +1,6 @@
 import React from "react"
 import { Text, TextInput, View } from "react-native"
+import { Card } from "react-native-elements"
 
 export default ({ id, onChange }) => {
   handleTextChange = id => {
@@ -7,9 +8,9 @@ export default ({ id, onChange }) => {
   }
 
   return (
-    <View>
+    <Card>
       <Text>Enter account id</Text>
       <TextInput style={{ backgroundColor: "grey" }} onChangeText={this.handleTextChange} />
-    </View>
+    </Card>
   )
 }

@@ -22,13 +22,10 @@ export default ({ id, authWith, onChange }) => {
     })
 
   return (
-    <View>
-      <Card containerStyle={{ width: "90%" }}>
-        <Text>MccFilter</Text>
-        <Text>Enter MccFilter id:</Text>
-        <TextInput style={{ backgroundColor: "grey" }} onChangeText={handleIdChanged} />
-      </Card>
-
+    <Card containerStyle={{ width: "90%" }}>
+      <Text>MccFilter</Text>
+      <Text>Enter MccFilter id:</Text>
+      <TextInput style={{ backgroundColor: "grey" }} onChangeText={handleIdChanged} />
       {id && (
         <View>
           {authWith ? (
@@ -38,6 +35,6 @@ export default ({ id, authWith, onChange }) => {
           )}
         </View>
       )}
-    </View>
+    </Card>
   )
 }
