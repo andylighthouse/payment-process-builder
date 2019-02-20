@@ -23,8 +23,12 @@ class Home extends Component {
     this.setState({ data: data })
   }
 
-  handleOnPress = () => {
+  toggleDisplayJSON = () => {
     this.setState({ showJSON: !this.state.showJSON })
+  }
+
+  handleOnReset = () => {
+    this.setState({ data: {} })
   }
 
   render() {
@@ -36,10 +40,12 @@ class Home extends Component {
           <Header />
           <PaymentProcessBuilder />
           <PaymentProcess {...this.state.data} onChange={this.handleChange} />
+          <Button onPress={this.handleOnReset} title={"restart"} />
           <Button
-            onPress={this.handleOnPress}
+            onPress={this.toggleDisplayJSON}
             title={this.state.showJSON ? "Hide JSON" : "Show JSON"}
           />
+
           {this.state.showJSON && <Card>{<JSONTree data={this.state.data} />}</Card>}
         </ScrollView>
       </Container>
