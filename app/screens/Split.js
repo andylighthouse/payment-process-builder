@@ -1,9 +1,34 @@
-import React, { Component } from "react"
+import React from "react"
+import { View, Text } from "react-native"
+import { Card } from "react-native-elements"
 
-class Account extends Component {
-  render() {
-    return {}
+import FundingSource from "./FundingSource"
+import AddSource from "./AddSource"
+
+export default (Split = ({ authWith, onChange }) => {
+  const handleChange = changedIndex => data => {
+    onChange({
+      _type: "Split",
+      authWith: authWith.map((aw, index) => (index === changedIndex ? data : aw)).filter(a => a),
+    })
   }
-}
+  const handleAdd = data => {
+    onChange({
+      _type: "Split",
+      authWith: (authWith || []).concat(data),
+    })
+  }
 
-export default Account
+  return (
+    <Card containerStyle={{ width: "90%" }}>
+      <Text>Split</Text>
+
+      {authWith &&
+        authWith.map((aw, index) => (
+          <FundingSource key={index} {...aw} onChange={handleChange(index)} />
+        ))}
+
+      <AddSource text="Add a Funding Source" onAdd={handleAdd} />
+    </Card>
+  )
+})
