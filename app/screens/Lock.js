@@ -1,14 +1,12 @@
-import React, { Component } from "react"
+import React from "react"
 import { Text, TextInput, View } from "react-native"
-import { connect } from "react-redux"
-import { Card, Icon } from "react-native-elements"
+import { Card } from "react-native-elements"
 
-import { Button } from "../components/Buttons"
 import AddSource from "./AddSource"
 import FundingSource from "./FundingSource"
 
 export default ({ id, authWith, onChange }) => {
-  const handleSelectChanged = id => {
+  const handleIdChanged = id => {
     onChange({
       _type: "Lock",
       id: id,
@@ -16,7 +14,6 @@ export default ({ id, authWith, onChange }) => {
     })
   }
   const handleFundingSourceChanged = data => {
-    console.log("SANITYCHECK2: " + JSON.stringify({ id: id }))
     onChange({
       _type: "Lock",
       id: id,
@@ -28,7 +25,7 @@ export default ({ id, authWith, onChange }) => {
       <Card containerStyle={{ width: "90%" }}>
         <Text>LOCK</Text>
         <Text>Enter Lock id:</Text>
-        <TextInput style={{ backgroundColor: "grey" }} onChangeText={handleSelectChanged} />
+        <TextInput style={{ backgroundColor: "grey" }} onChangeText={handleIdChanged} />
       </Card>
 
       {id && (

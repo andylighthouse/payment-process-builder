@@ -1,25 +1,15 @@
-import React, { Component } from "react"
+import React from "react"
 import { Text, TextInput, View } from "react-native"
-import { connect } from "react-redux"
 
-import { Button } from "../components/Buttons"
-import { saveCreditCardId } from "../actions/build"
-
-class CreditCard extends Component {
-  handleOnPress = () => {}
-
+export default ({ id, onChange }) => {
   handleTextChange = id => {
-    this.props.dispatch(saveCreditCardId(id))
+    onChange({ _type: "CreditCard", id: id })
   }
-  render() {
-    return (
-      <View>
-        <Text>Enter credit card id</Text>
-        <TextInput style={{ backgroundColor: "grey" }} onChange={this.handleTextChange} />
-        <Button text="Done" onPress={this.handleOnPress} />
-      </View>
-    )
-  }
-}
 
-export default connect()(CreditCard)
+  return (
+    <View>
+      <Text>Enter CreditCard Id</Text>
+      <TextInput style={{ backgroundColor: "grey" }} onChangeText={this.handleTextChange} />
+    </View>
+  )
+}

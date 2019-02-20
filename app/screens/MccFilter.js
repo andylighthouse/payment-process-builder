@@ -1,25 +1,43 @@
-import React, { Component } from "react"
+import React from "react"
 import { Text, TextInput, View } from "react-native"
-import { connect } from "react-redux"
+import { Card } from "react-native-elements"
 
-import { Button } from "../components/Buttons"
-import { saveMccFilterId } from "../actions/build"
+import AddSource from "./AddSource"
+import FundingSource from "./FundingSource"
 
-class MccFilter extends Component {
-  handleOnPress = () => {}
-
-  handleTextChange = id => {
-    this.props.dispatch(saveMccFilterId(id))
+export default ({ id, authWith, onChange }) => {
+  const handleIdChanged = id => {
+    onChange({
+      _type: "MccFilter",
+      id: id,
+      authWith: authWith,
+    })
   }
-  render() {
-    return (
-      <View>
-        <Text>Enter mcc_group id</Text>
-        <TextInput style={{ backgroundColor: "grey" }} onChangeText={this.handleTextChange} />
-        <Button onPress={this.handleOnPress} text={"Choose Funding Source"} />
-      </View>
-    )
-  }
+
+  const handleFundingSourceChanged = data =>
+    onChange({
+      _type: "MccFilter",
+      id: id,
+      authWith: data,
+    })
+
+  return (
+    <View>
+      <Card containerStyle={{ width: "90%" }}>
+        <Text>MccFilter</Text>
+        <Text>Enter MccFilter id:</Text>
+        <TextInput style={{ backgroundColor: "grey" }} onChangeText={handleIdChanged} />
+      </Card>
+
+      {id && (
+        <View>
+          {authWith ? (
+            <FundingSource {...authWith} onChange={handleFundingSourceChanged} />
+          ) : (
+            <AddSource text="Add Funding Source" onAdd={handleFundingSourceChanged} />
+          )}
+        </View>
+      )}
+    </View>
+  )
 }
-
-export default connect()(MccFilter)

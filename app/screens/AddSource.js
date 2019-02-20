@@ -1,25 +1,10 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import {
-  StatusBar,
-  ScrollView,
-  Text,
-  View,
-  Button,
-  Modal,
-  TouchableHighlight,
-  FlatList,
-} from "react-native"
-// import FundingSource from "./FundingSource"
-// import AddSource from "./AddSource"
-import EStyleSheet from "react-native-extended-stylesheet"
-import { Card, Icon } from "react-native-elements"
+import { Text, View, Button, Modal, TouchableHighlight, FlatList } from "react-native"
+
 import { ListItem } from "../components/ListItem"
 import { Separator } from "../components/ListItem"
 
-const styles = EStyleSheet.create({
-  $orange: "$primaryOrange",
-})
 const fundingSourceOptions = ["Account", "CreditCard", "MccFilter", "Lock", "FundInOrder", "Split"]
 
 class AddSource extends Component {

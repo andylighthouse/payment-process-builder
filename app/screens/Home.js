@@ -1,17 +1,11 @@
 import React, { Component } from "react"
-import EStyleSheet from "react-native-extended-stylesheet"
-import { StatusBar, ScrollView, Text, View, Button, ListItem } from "react-native"
+import { StatusBar } from "react-native"
 import { connect } from "react-redux"
-import { Card, Icon } from "react-native-elements"
 
 import { Container } from "../components/Container"
 import { PaymentProcess } from "../components/PaymentProcess"
 import { PaymentProcessBuilder } from "../components/Text"
 import { Header } from "../components/Header"
-
-const styles = EStyleSheet.create({
-  $orange: "$primaryOrange",
-})
 
 class Home extends Component {
   constructor() {

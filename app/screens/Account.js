@@ -1,21 +1,15 @@
-import React, { Component } from "react"
+import React from "react"
 import { Text, TextInput, View } from "react-native"
-import { connect } from "react-redux"
 
-import { Button } from "../components/Buttons"
-
-class Account extends Component {
+export default ({ id, onChange }) => {
   handleTextChange = id => {
-    onChange({ ...data, id: id })
+    onChange({ _type: "Account", id: id })
   }
-  render() {
-    return (
-      <View>
-        <Text>Enter account id</Text>
-        <TextInput style={{ backgroundColor: "grey" }} onChangeText={this.handleTextChange} />
-      </View>
-    )
-  }
-}
 
-export default connect()(Account)
+  return (
+    <View>
+      <Text>Enter account id</Text>
+      <TextInput style={{ backgroundColor: "grey" }} onChangeText={this.handleTextChange} />
+    </View>
+  )
+}
