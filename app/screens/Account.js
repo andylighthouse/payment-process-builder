@@ -10,7 +10,11 @@ export default ({ id, onChange }) => {
   return (
     <Card>
       <Text>Enter account id</Text>
-      <TextInput style={{ backgroundColor: "grey" }} onChangeText={this.handleTextChange} />
+      <TextInput
+        style={{ backgroundColor: "grey" }}
+        keyboardType="numeric"
+        onChangeText={this.handleTextChange}
+      />
     </Card>
   )
 }

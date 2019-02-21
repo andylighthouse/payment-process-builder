@@ -1,11 +1,12 @@
 import EStyleSheet from "react-native-extended-stylesheet"
 
 export default EStyleSheet.create({
-  container: {
+  contentContainerStyle: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "flex-start",
     backgroundColor: "$primaryOrange",
     flexDirection: "column",
   },
+  // endFillColor: {
+  //   color: "$primaryOrange",
+  // },
 })

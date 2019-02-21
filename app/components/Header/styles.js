@@ -11,4 +11,10 @@ export default EStyleSheet.create({
     },
     width: "100%",
   },
+  optionsContainer: {
+    width: "100%",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
 })

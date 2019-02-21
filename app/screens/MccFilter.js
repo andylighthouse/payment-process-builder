@@ -25,7 +25,11 @@ export default ({ id, authWith, onChange }) => {
     <Card containerStyle={{ width: "90%" }}>
       <Text>MccFilter</Text>
       <Text>Enter MccFilter id:</Text>
-      <TextInput style={{ backgroundColor: "grey" }} onChangeText={handleIdChanged} />
+      <TextInput
+        style={{ backgroundColor: "grey" }}
+        keyboardType="numeric"
+        onChangeText={handleIdChanged}
+      />
       {id && (
         <View>
           {authWith ? (

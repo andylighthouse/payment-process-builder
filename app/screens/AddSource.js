@@ -1,9 +1,10 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import { Text, View, Button, Modal, TouchableHighlight, FlatList } from "react-native"
+import { Text, View, Modal, TouchableHighlight, FlatList } from "react-native"
 
 import { ListItem } from "../components/ListItem"
 import { Separator } from "../components/ListItem"
+import { Button } from "../components/Buttons"
 
 const fundingSourceOptions = ["Account", "CreditCard", "MccFilter", "Lock", "FundInOrder", "Split"]
 
@@ -56,7 +57,7 @@ class AddSource extends Component {
           onPress={() => {
             this.setModalVisible(true)
           }}
-          title="Add Funding Source"
+          text="Add Funding Source"
         />
       </View>
     )

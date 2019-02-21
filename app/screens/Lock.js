@@ -24,7 +24,11 @@ export default ({ id, authWith, onChange }) => {
     <Card containerStyle={{ width: "90%" }}>
       <Text>LOCK</Text>
       <Text>Enter Lock id:</Text>
-      <TextInput style={{ backgroundColor: "grey" }} onChangeText={handleIdChanged} />
+      <TextInput
+        style={{ backgroundColor: "grey" }}
+        keyboardType="numeric"
+        onChangeText={handleIdChanged}
+      />
       {id && (
         <View>
           {authWith ? (
