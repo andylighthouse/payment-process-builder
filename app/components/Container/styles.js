@@ -6,7 +6,4 @@ export default EStyleSheet.create({
     backgroundColor: "$primaryOrange",
     flexDirection: "column",
   },
-  // endFillColor: {
-  //   color: "$primaryOrange",
-  // },
 })

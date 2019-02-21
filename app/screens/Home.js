@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { StatusBar, Text } from "react-native"
+import { StatusBar, Text, View } from "react-native"
 import { connect } from "react-redux"
 import { Card } from "react-native-elements"
 import JSONTree from "react-native-json-tree"
@@ -9,6 +9,8 @@ import { PaymentProcess } from "../components/PaymentProcess"
 
 import { Header, Options } from "../components/Header"
 import { Button } from "../components/Buttons"
+import { Footer } from "../components/Footer"
+import { ScrollView } from "react-native-gesture-handler"
 
 class Home extends Component {
   constructor() {
@@ -35,22 +37,19 @@ class Home extends Component {
   render() {
     console.log(JSON.stringify(this.state))
     return (
-      <Container>
-        <StatusBar translucent={false} barStyle="light-content" />
+      <View style={{ flex: 1 }}>
+        <Container>
+          <StatusBar translucent={false} barStyle="light-content" />
+          <Header />
 
-        <Header />
+          <Options onPress={this.handleOnReset} name="restart" />
 
-        <Options onPress={this.handleOnReset} name="restart" />
+          <PaymentProcess {...this.state.data} onChange={this.handleChange} />
 
-        <PaymentProcess {...this.state.data} onChange={this.handleChange} />
-
-        <Button
-          onPress={this.toggleDisplayJSON}
-          text={this.state.showJSON ? "Hide JSON" : "Show JSON"}
-        />
-
-        {this.state.showJSON && <Card>{<JSONTree data={this.state.data} />}</Card>}
-      </Container>
+          {this.state.showJSON && <Card>{<JSONTree data={this.state.data} />}</Card>}
+        </Container>
+        <Footer onPress={this.toggleDisplayJSON} name={"json"} close={this.state.showJSON} />
+      </View>
     )
   }
 }
