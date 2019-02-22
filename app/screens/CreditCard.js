@@ -1,6 +1,8 @@
 import React from "react"
-import { Text, TextInput, View } from "react-native"
+import { TextInput, View } from "react-native"
 import { Card } from "react-native-elements"
+
+import { BodyText } from "../components/Text"
 
 export default ({ id, onChange }) => {
   handleTextChange = id => {
@@ -9,9 +11,9 @@ export default ({ id, onChange }) => {
 
   return (
     <Card>
-      <Text>Enter CreditCard Id</Text>
+      <BodyText text={"Enter CreditCard Id"} />
       <TextInput
-        style={{ backgroundColor: "grey" }}
+        style={{ backgroundColor: "#F0F0F0" }}
         keyboardType="numeric"
         onChangeText={this.handleTextChange}
       />

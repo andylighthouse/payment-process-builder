@@ -1,4 +1,5 @@
 import styles from "./styles"
-import PaymentProcessBuilder from "./PaymentProcessBuilder"
+import HeadingText from "./HeadingText"
+import BodyText from "./BodyText"
 
-export { PaymentProcessBuilder, styles }
+export { HeadingText, BodyText, styles }

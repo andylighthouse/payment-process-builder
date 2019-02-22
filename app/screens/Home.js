@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { StatusBar, Text, View } from "react-native"
+import { StatusBar, View } from "react-native"
 import { connect } from "react-redux"
 import { Card } from "react-native-elements"
 import JSONTree from "react-native-json-tree"
@@ -8,9 +8,8 @@ import { Container } from "../components/Container"
 import { PaymentProcess } from "../components/PaymentProcess"
 
 import { Header, Options } from "../components/Header"
-import { Button } from "../components/Buttons"
+
 import { Footer } from "../components/Footer"
-import { ScrollView } from "react-native-gesture-handler"
 
 class Home extends Component {
   constructor() {

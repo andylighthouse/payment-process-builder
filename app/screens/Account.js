@@ -1,7 +1,8 @@
 import React from "react"
-import { Text, TextInput, View } from "react-native"
+import { TextInput } from "react-native"
 import { Card } from "react-native-elements"
 
+import { BodyText } from "../components/Text"
 export default ({ id, onChange }) => {
   handleTextChange = id => {
     onChange({ _type: "Account", id: id })
@@ -9,7 +10,7 @@ export default ({ id, onChange }) => {
 
   return (
     <Card>
-      <Text>Enter account id</Text>
+      <BodyText text={"Enter account id:"} />
       <TextInput
         style={{ backgroundColor: "grey" }}
         keyboardType="numeric"

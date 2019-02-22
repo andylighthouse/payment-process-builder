@@ -1,9 +1,9 @@
 import React from "react"
-import { View, Text } from "react-native"
 import { Card } from "react-native-elements"
 
 import FundingSource from "./FundingSource"
 import AddSource from "./AddSource"
+import { BodyText } from "../components/Text"
 
 export default (Split = ({ authWith, onChange }) => {
   const handleChange = changedIndex => data => {
@@ -21,7 +21,7 @@ export default (Split = ({ authWith, onChange }) => {
 
   return (
     <Card containerStyle={{ width: "90%" }}>
-      <Text>Split</Text>
+      <BodyText text={"Split"} />
 
       {authWith &&
         authWith.map((aw, index) => (

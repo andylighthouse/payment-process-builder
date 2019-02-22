@@ -1,9 +1,10 @@
 import React from "react"
-import { Text, TextInput, View } from "react-native"
+import { TextInput, View } from "react-native"
 import { Card } from "react-native-elements"
 
 import AddSource from "./AddSource"
 import FundingSource from "./FundingSource"
+import { BodyText } from "../components/Text"
 
 export default ({ id, authWith, onChange }) => {
   const handleIdChanged = id => {
@@ -22,10 +23,10 @@ export default ({ id, authWith, onChange }) => {
   }
   return (
     <Card containerStyle={{ width: "90%" }}>
-      <Text>LOCK</Text>
-      <Text>Enter Lock id:</Text>
+      <BodyText text={"Lock"} />
+      <BodyText text="Enter lock id:" />
       <TextInput
-        style={{ backgroundColor: "grey" }}
+        style={{ backgroundColor: "#F0F0F0" }}
         keyboardType="numeric"
         onChangeText={handleIdChanged}
       />
