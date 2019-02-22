@@ -11,8 +11,8 @@ const ICON_SIZE = 30
 const Options = ({ name, onPress }) => (
   <View style={styles.optionsContainer}>
     <HeadingText text={"Payment Process Builder"} />
-    <TouchableOpacity>
-      <MaterialCommunityIcons name={name} color={ICON_COLOR} size={ICON_SIZE} onPress={onPress} />
+    <TouchableOpacity style={styles.button} onPress={onPress}>
+      <MaterialCommunityIcons name={name} color={ICON_COLOR} size={ICON_SIZE} />
     </TouchableOpacity>
   </View>
 )

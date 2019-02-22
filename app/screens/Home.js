@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { StatusBar, View } from "react-native"
+import { StatusBar, View, Vibration } from "react-native"
 import { connect } from "react-redux"
 import { Card } from "react-native-elements"
 import JSONTree from "react-native-json-tree"

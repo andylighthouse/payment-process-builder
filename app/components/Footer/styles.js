@@ -5,5 +5,8 @@ export default EStyleSheet.create({
     position: "absolute",
     right: 10,
     bottom: 20,
+    zIndex: 1,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
   },
 })

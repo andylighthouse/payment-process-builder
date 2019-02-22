@@ -8,16 +8,11 @@ const ICON_COLOR = "white"
 const ICON_SIZE = 30
 
 const Footer = ({ onPress, name, close }) => (
-  <TouchableOpacity style={styles.container}>
+  <TouchableOpacity style={styles.container} onPress={onPress}>
     {close ? (
-      <MaterialCommunityIcons
-        name={"close"}
-        color={ICON_COLOR}
-        size={ICON_SIZE}
-        onPress={onPress}
-      />
+      <MaterialCommunityIcons name={"close"} color={"black"} size={ICON_SIZE} />
     ) : (
-      <MaterialCommunityIcons name={name} color={ICON_COLOR} size={ICON_SIZE} onPress={onPress} />
+      <MaterialCommunityIcons name={name} color={ICON_COLOR} size={ICON_SIZE} />
     )}
   </TouchableOpacity>
 )
