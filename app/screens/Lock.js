@@ -22,7 +22,7 @@ export default ({ id, authWith, onChange }) => {
     })
   }
   return (
-    <Card containerStyle={{ width: "90%" }}>
+    <Card containerStyle={{ borderRadius: 15 }}>
       <BodyText text={"Lock"} />
       <BodyText text="Enter lock id:" />
       <TextInput

@@ -23,7 +23,7 @@ export default ({ id, authWith, onChange }) => {
     })
 
   return (
-    <Card containerStyle={{ width: "90%" }}>
+    <Card containerStyle={{ borderRadius: 15 }}>
       <BodyText text={"MccFilter"} />
       <BodyText text={"Enter MccFilter id:"} />
       <TextInput

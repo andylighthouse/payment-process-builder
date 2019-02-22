@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-import { connect } from "react-redux"
 import { View, Modal, TouchableHighlight, FlatList } from "react-native"
 
 import { ListItem } from "../components/ListItem"
@@ -19,22 +18,18 @@ class AddSource extends Component {
   }
 
   handleOnPress = item => {
+    this.setState({ modalVisible: false })
     const { onAdd } = this.props
     onAdd({ _type: item })
   }
   render() {
+    console.log(JSON.stringify("MODAL:   " + this.state.modalVisible))
     return (
       <View>
-        <Modal
-          animationType="slide"
-          transparent={false}
-          visible={this.state.modalVisible}
-          onRequestClose={() => {
-            Alert.alert("Modal has been closed.")
-          }}>
+        <Modal animationType="slide" transparent={false} visible={this.state.modalVisible}>
           <View>
             <View>
-              <BodyText text={"hello world"} />
+              <BodyText text={"Pick a Funding Source"} />
 
               <FlatList
                 data={fundingSourceOptions}
@@ -45,12 +40,6 @@ class AddSource extends Component {
                 ItemSeparatorComponent={Separator}
               />
             </View>
-            <TouchableHighlight
-              onPress={() => {
-                this.setModalVisible(!this.state.modalVisible)
-              }}>
-              <BodyText text={"Hide MOdal"} />
-            </TouchableHighlight>
           </View>
         </Modal>
 
@@ -65,4 +54,4 @@ class AddSource extends Component {
   }
 }
 
-export default connect()(AddSource)
+export default AddSource

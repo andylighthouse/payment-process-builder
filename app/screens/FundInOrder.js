@@ -20,7 +20,7 @@ export default (FundInOrder = ({ authWith, onChange }) => {
   }
 
   return (
-    <Card containerStyle={{ width: "90%" }}>
+    <Card containerStyle={{ borderRadius: 15 }}>
       <BodyText text={"FundInOrder"} />
 
       {authWith &&

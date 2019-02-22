@@ -10,7 +10,7 @@ export default ({ id, onChange }) => {
   }
 
   return (
-    <Card>
+    <Card containerStyle={{ borderRadius: 15 }}>
       <BodyText text={"Enter CreditCard Id"} />
       <TextInput
         style={{ backgroundColor: "#F0F0F0" }}

@@ -9,7 +9,7 @@ export default ({ id, onChange }) => {
   }
 
   return (
-    <Card>
+    <Card containerStyle={{ borderRadius: 15 }}>
       <BodyText text={"Enter account id:"} />
       <TextInput
         style={{ backgroundColor: "grey" }}
