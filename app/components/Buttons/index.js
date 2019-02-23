@@ -1,4 +1,5 @@
 import Button from "./Button"
 import styles from "./styles"
+import AddFundButton from "./AddFundButton"
 
-export { Button, styles }
+export { Button, AddFundButton, styles }

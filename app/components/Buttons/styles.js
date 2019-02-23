@@ -10,6 +10,7 @@ export default EStyleSheet.create({
     borderRadius: 8,
     width: "50%",
     alignSelf: "center",
+    flexDirection: "row",
   },
   text: {
     color: "$primaryOrange",

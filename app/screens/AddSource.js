@@ -3,7 +3,7 @@ import { View, Modal, TouchableOpacity, FlatList } from "react-native"
 
 import { ListItem } from "../components/ListItem"
 import { Separator } from "../components/ListItem"
-import { Button } from "../components/Buttons"
+import { AddFundButton } from "../components/Buttons"
 
 const fundingSourceOptions = ["Account", "CreditCard", "MccFilter", "Lock", "FundInOrder", "Split"]
 
@@ -42,7 +42,7 @@ class AddSource extends Component {
           </View>
         </Modal>
 
-        <Button
+        <AddFundButton
           onPress={() => {
             this.setModalVisible(true)
           }}
