@@ -4,7 +4,7 @@ import { StyleSheet } from "react-native"
 export default EStyleSheet.create({
   row: {
     paddingHorizontal: 20,
-    paddingVertical: 16,
+    paddingVertical: 30,
     backgroundColor: "white",
     alignItems: "center",
   },
@@ -13,5 +13,9 @@ export default EStyleSheet.create({
     backgroundColor: "$separator",
     flex: 1,
     height: StyleSheet.hairlineWidth,
+  },
+  text: {
+    color: "$primaryOrange",
+    fontWeight: "800",
   },
 })

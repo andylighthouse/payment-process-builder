@@ -6,7 +6,7 @@ import styles from "./styles"
 const ListItem = ({ onPress, text }) => (
   <TouchableHighlight onPress={onPress}>
     <View style={styles.row}>
-      <Text>{text}</Text>
+      <Text style={styles.text}>{text}</Text>
     </View>
   </TouchableHighlight>
 )

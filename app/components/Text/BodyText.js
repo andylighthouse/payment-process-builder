@@ -3,6 +3,6 @@ import { Text } from "react-native"
 
 import styles from "./styles"
 
-const bodyText = ({ text }) => <Text style={styles.text}>{text}</Text>
+const BodyText = ({ text }) => <Text style={styles.text}>{text}</Text>
 
-export default bodyText
+export default BodyText
