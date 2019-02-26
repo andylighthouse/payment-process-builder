@@ -8,9 +8,11 @@ import { HeadingText } from "../Text"
 const ICON_COLOR = "white"
 const ICON_SIZE = 30
 
-const Options = ({ name, onPress }) => (
+const Options = ({ children, onPress, name }) => (
   <View style={styles.optionsContainer}>
     <HeadingText text={"Payment Process Builder"} />
+    {children}
+
     <TouchableOpacity style={styles.button} onPress={onPress}>
       <MaterialCommunityIcons name={name} color={ICON_COLOR} size={ICON_SIZE} />
     </TouchableOpacity>

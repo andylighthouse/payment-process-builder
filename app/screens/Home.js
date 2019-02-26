@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { StatusBar, View, Vibration } from "react-native"
+import { StatusBar, View, Text } from "react-native"
 import { connect } from "react-redux"
 import { Card } from "react-native-elements"
 import JSONTree from "react-native-json-tree"
@@ -41,7 +41,10 @@ class Home extends Component {
           <StatusBar translucent={false} barStyle="light-content" />
           <Header />
 
-          <Options onPress={this.handleOnReset} name="restart" />
+          <Options onPress={this.handleOnReset} name="restart">
+            <Text>hi</Text>
+            <Text>hi</Text>
+          </Options>
 
           <PaymentProcess {...this.state.data} onChange={this.handleChange} />
 
