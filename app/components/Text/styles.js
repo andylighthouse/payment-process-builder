@@ -5,6 +5,7 @@ export default EStyleSheet.create({
     fontSize: 25,
     color: "$white",
     fontWeight: "500",
+    paddingLeft: 10,
   },
   text: {
     color: "$primaryOrange",

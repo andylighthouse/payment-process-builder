@@ -1,6 +1,8 @@
 import React, { Component } from "react"
-import { FlatList, Modal, View, Platform } from "react-native"
+import { FlatList, Modal, View, Platform, TouchableOpacity } from "react-native"
 import { Card } from "react-native-elements"
+import { Feather } from "@expo/vector-icons"
+import EStyleSheet from "react-native-extended-stylesheet"
 
 import { BodyText } from "../components/Text"
 import { ListItem } from "../components/ListItem"
@@ -9,10 +11,15 @@ import { AddFundButton } from "../components/Buttons"
 import { Header } from "../components/Header"
 
 const TEMP_CREDIT_CARD = ["7891 (Visa)", "8789 (MasterCard)"]
+
+const colors = EStyleSheet.create({
+  $orange: "$primaryOrange",
+})
+
 class CreditCard extends Component {
   state = {
     modalVisible: false,
-    currentCreditCard: "",
+    currentCreditCard: null,
   }
 
   setModalVisible(visible) {
@@ -31,7 +38,12 @@ class CreditCard extends Component {
       <Card containerStyle={{ borderRadius: 15 }}>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <BodyText text={"Credit Card:"} />
-          <BodyText text={this.state.currentCreditCard} />
+          <TouchableOpacity
+            style={{ flexDirection: "row" }}
+            onPress={() => this.setModalVisible(true)}>
+            <BodyText text={this.state.currentCreditCard} />
+            {this.state.currentCreditCard && <Feather name={"edit"} color={colors.$orange} />}
+          </TouchableOpacity>
         </View>
         <Modal
           animationType="slide"
@@ -51,12 +63,14 @@ class CreditCard extends Component {
           </View>
         </Modal>
 
-        <AddFundButton
-          onPress={() => {
-            this.setModalVisible(true)
-          }}
-          text="Choose Credit Card"
-        />
+        {!this.state.currentCreditCard && (
+          <AddFundButton
+            onPress={() => {
+              this.setModalVisible(true)
+            }}
+            text="Choose Credit Card"
+          />
+        )}
       </Card>
     )
   }

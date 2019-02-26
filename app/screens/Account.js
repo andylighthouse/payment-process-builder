@@ -1,6 +1,8 @@
 import React, { Component } from "react"
-import { FlatList, Modal, View, Platform } from "react-native"
+import { FlatList, Modal, View, Platform, TouchableOpacity } from "react-native"
 import { Card } from "react-native-elements"
+import { Feather } from "@expo/vector-icons"
+import EStyleSheet from "react-native-extended-stylesheet"
 
 import { BodyText } from "../components/Text"
 import { ListItem } from "../components/ListItem"
@@ -9,10 +11,15 @@ import { AddFundButton } from "../components/Buttons"
 import { Header } from "../components/Header"
 
 const TEMP_ACCOUNT = ["Food ($87.50)", "General Funds ($100.30)"]
+
+const colors = EStyleSheet.create({
+  $orange: "$primaryOrange",
+})
+
 class Account extends Component {
   state = {
     modalVisible: false,
-    currentAccount: "",
+    currentAccount: null,
   }
 
   setModalVisible(visible) {
@@ -31,7 +38,12 @@ class Account extends Component {
       <Card containerStyle={{ borderRadius: 15 }}>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <BodyText text={"Account:"} />
-          <BodyText text={this.state.currentAccount} />
+          <TouchableOpacity
+            style={{ flexDirection: "row" }}
+            onPress={() => this.setModalVisible(true)}>
+            <BodyText text={this.state.currentAccount} />
+            {this.state.currentAccount && <Feather name={"edit"} color={colors.$orange} />}
+          </TouchableOpacity>
         </View>
         <Modal
           animationType="slide"
@@ -51,12 +63,14 @@ class Account extends Component {
           </View>
         </Modal>
 
-        <AddFundButton
-          onPress={() => {
-            this.setModalVisible(true)
-          }}
-          text="Choose Account"
-        />
+        {!this.state.currentAccount && (
+          <AddFundButton
+            onPress={() => {
+              this.setModalVisible(true)
+            }}
+            text="Choose Account"
+          />
+        )}
       </Card>
     )
   }
