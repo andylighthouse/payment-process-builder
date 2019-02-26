@@ -1,9 +1,10 @@
 import React, { Component } from "react"
-import { View, Modal, TouchableOpacity, FlatList } from "react-native"
+import { View, Modal, FlatList, Platform } from "react-native"
 
 import { ListItem } from "../components/ListItem"
 import { Separator } from "../components/ListItem"
 import { AddFundButton } from "../components/Buttons"
+import { Header } from "../components/Header"
 
 const fundingSourceOptions = ["Account", "CreditCard", "MccFilter", "Lock", "FundInOrder", "Split"]
 
@@ -30,6 +31,7 @@ class AddSource extends Component {
           visible={this.state.modalVisible}
           onRequestClose={() => this.setModalVisible(false)}>
           <View>
+            {Platform.OS === "ios" ? <Header /> : null}
             <FlatList
               data={fundingSourceOptions}
               renderItem={({ item }) => (
