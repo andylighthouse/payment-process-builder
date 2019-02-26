@@ -1,6 +1,8 @@
 import React, { Component } from "react"
-import { FlatList, View, Modal } from "react-native"
+import { FlatList, View, Modal, Platform, TouchableOpacity } from "react-native"
 import { Card } from "react-native-elements"
+import { Feather } from "@expo/vector-icons"
+import EStyleSheet from "react-native-extended-stylesheet"
 
 import AddSource from "./AddSource"
 import FundingSource from "./FundingSource"
@@ -8,82 +10,18 @@ import { BodyText } from "../components/Text"
 import { ListItem } from "../components/ListItem"
 import { Separator } from "../components/ListItem"
 import { AddFundButton } from "../components/Buttons"
+import { Header } from "../components/Header"
 
-// export default ({ id, authWith, onChange }) => {
-//   const handleIdChanged = id => {
-//     onChange({
-//       _type: "Lock",
-//       id: id,
-//       authWith: authWith,
-//     })
-//   }
-//   const handleFundingSourceChanged = data => {
-//     onChange({
-//       _type: "Lock",
-//       id: id,
-//       authWith: data,
-//     })
-//   }
-//   return (
-//     <Card containerStyle={{ borderRadius: 15 }}>
-//       <BodyText text={"Lock"} />
-//       <BodyText text="Enter lock id:" />
-//       <TextInput
-//         style={{ backgroundColor: "#F0F0F0" }}
-//         keyboardType="numeric"
-//         onChangeText={handleIdChanged}
-//       />
-//       {id && (
-//         <View>
-//           {authWith ? (
-//             <FundingSource {...authWith} onChange={handleFundingSourceChanged} />
-//           ) : (
-//             <AddSource text="Add Funding Source" onAdd={handleFundingSourceChanged} />
-//           )}
-//         </View>
-//       )}
-//     </Card>
-//   )
-// }
+const TEMP_LOCK = ["Card Lock (unlocked)", "Food Lock (unlocked)", "General Lock (unlocked)"]
 
-// const TEMP_LOCK = ["Card Lock (unlocked)", "Food Lock (unlocked", "General Lock (unlocked)"]
-
-// export default ({ id, authWith, onChange }) => {
-//   return (
-//     <Card containerStyle={{ borderRadius: 15 }}>
-//       <BodyText text={"Lock"} />
-//       <BodyText text="Enter lock id:" />
-
-//       <Modal>
-//         <View>
-//           <FlatList
-//             data={TEMP_LOCK}
-//             renderItem={({ item }) => (
-//               <ListItem text={item} onPress={() => handleLockChange(item)} />
-//             )}
-//             keyExtractor={item => item}
-//             ItemSeparatorComponent={Separator}
-//           />
-//         </View>
-//       </Modal>
-
-//       {id && (
-//         <View>
-//           {authWith ? (
-//             <FundingSource {...authWith} onChange={handleFundingSourceChanged} />
-//           ) : (
-//             <AddSource text="Add Funding Source" onAdd={handleFundingSourceChanged} />
-//           )}
-//         </View>
-//       )}
-//     </Card>
-//   )
-// }
+const colors = EStyleSheet.create({
+  $orange: "$primaryOrange",
+})
 
 class Lock extends Component {
   state = {
     modalVisible: false,
-    currentLock: "",
+    currentLock: null,
   }
 
   setModalVisible(visible) {
@@ -112,13 +50,17 @@ class Lock extends Component {
   }
 
   render() {
-    const TEMP_LOCK = ["Card Lock (unlocked)", "Food Lock (unlocked)", "General Lock (unlocked)"]
     const { id, authWith } = this.props
     return (
       <Card containerStyle={{ borderRadius: 15 }}>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <BodyText text={"Lock:"} />
-          <BodyText text={this.state.currentLock} />
+          <TouchableOpacity
+            style={{ flexDirection: "row" }}
+            onPress={() => this.setModalVisible(true)}>
+            <BodyText text={this.state.currentLock} />
+            {this.state.currentLock && <Feather name={"edit"} color={colors.$orange} />}
+          </TouchableOpacity>
         </View>
         <Modal
           animationType="slide"
@@ -126,6 +68,7 @@ class Lock extends Component {
           visible={this.state.modalVisible}
           onRequestClose={() => this.setModalVisible(false)}>
           <View>
+            {Platform.OS === "ios" ? <Header /> : null}
             <FlatList
               data={TEMP_LOCK}
               renderItem={({ item }) => (
@@ -136,12 +79,15 @@ class Lock extends Component {
             />
           </View>
         </Modal>
-        <AddFundButton
-          onPress={() => {
-            this.setModalVisible(true)
-          }}
-          text="Choose Lock"
-        />
+
+        {!this.state.currentLock && (
+          <AddFundButton
+            onPress={() => {
+              this.setModalVisible(true)
+            }}
+            text="Choose Lock"
+          />
+        )}
 
         {id && (
           <View>
