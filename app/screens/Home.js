@@ -6,10 +6,9 @@ import JSONTree from "react-native-json-tree"
 
 import { Container } from "../components/Container"
 import { PaymentProcess } from "../components/PaymentProcess"
-
 import { Header, Options } from "../components/Header"
-
-import { Footer } from "../components/Footer"
+import { MaterialIconButton } from "../components/Buttons"
+import { MaterialCommunityIconsButton } from "../components/Buttons"
 
 class Home extends Component {
   constructor() {
@@ -18,6 +17,7 @@ class Home extends Component {
     this.state = {
       data: {},
       showJSON: false,
+      favorite: [],
     }
   }
 
@@ -33,6 +33,10 @@ class Home extends Component {
     this.setState({ data: {} })
   }
 
+  handleAddFavorite = () => {}
+
+  handleDone = () => {}
+
   render() {
     console.log(JSON.stringify(this.state))
     return (
@@ -41,16 +45,21 @@ class Home extends Component {
           <StatusBar translucent={false} barStyle="light-content" />
           <Header />
 
-          <Options onPress={this.handleOnReset} name="restart">
-            <Text>hi</Text>
-            <Text>hi</Text>
+          <Options>
+            <MaterialIconButton onPress={this.handleDone} name={"build"} />
+            <MaterialIconButton onPress={this.handleAddFavorite} name={"favorite"} />
+            <MaterialCommunityIconsButton
+              onPress={this.toggleDisplayJSON}
+              name={"json"}
+              close={this.state.showJSON}
+            />
+            <MaterialCommunityIconsButton onPress={this.handleOnReset} name={"restart"} />
           </Options>
 
           <PaymentProcess {...this.state.data} onChange={this.handleChange} />
 
           {this.state.showJSON && <Card>{<JSONTree data={this.state.data} />}</Card>}
         </Container>
-        <Footer onPress={this.toggleDisplayJSON} name={"json"} close={this.state.showJSON} />
       </View>
     )
   }

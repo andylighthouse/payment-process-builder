@@ -16,6 +16,7 @@ export default EStyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
+    paddingVertical: 5,
   },
   button: {
     paddingVertical: 5,

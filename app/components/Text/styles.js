@@ -2,10 +2,10 @@ import EStyleSheet from "react-native-extended-stylesheet"
 
 export default EStyleSheet.create({
   heading: {
-    fontSize: 25,
+    fontSize: 15,
     color: "$white",
     fontWeight: "500",
-    paddingLeft: 10,
+    paddingLeft: 5,
   },
   text: {
     color: "$primaryOrange",
