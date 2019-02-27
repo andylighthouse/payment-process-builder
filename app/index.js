@@ -4,6 +4,7 @@ import { Provider } from "react-redux"
 
 import store from "./config/store"
 import Home from "./screens/Home"
+import Navigation from "./config/routes"
 
 EStyleSheet.build({
   $primaryOrange: "#D57A66",
@@ -16,6 +17,6 @@ EStyleSheet.build({
 
 export default () => (
   <Provider store={store}>
-    <Home />
+    <Navigation />
   </Provider>
 )

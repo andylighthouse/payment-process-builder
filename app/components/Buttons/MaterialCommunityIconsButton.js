@@ -3,7 +3,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons"
 import { TouchableOpacity } from "react-native"
 
 const ICON_COLOR = "white"
-const ICON_SIZE = 25
+const ICON_SIZE = 30
 
 const MaterialCommunityIconsButton = ({ onPress, name, close }) => (
   <TouchableOpacity onPress={onPress}>
