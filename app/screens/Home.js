@@ -10,6 +10,9 @@ import { Header, Options } from "../components/Header"
 import { MaterialIconButton } from "../components/Buttons"
 import { MaterialCommunityIconsButton } from "../components/Buttons"
 
+//actions
+import { add_favorite } from "../actions/favorite"
+
 class Home extends Component {
   constructor() {
     super()
@@ -17,7 +20,6 @@ class Home extends Component {
     this.state = {
       data: {},
       showJSON: false,
-      favorite: [],
     }
   }
 
@@ -33,7 +35,9 @@ class Home extends Component {
     this.setState({ data: {} })
   }
 
-  handleAddFavorite = () => {}
+  handleAddFavorite = () => {
+    this.props.dispatch(add_favorite(this.state.data))
+  }
 
   handleDone = () => {}
 
