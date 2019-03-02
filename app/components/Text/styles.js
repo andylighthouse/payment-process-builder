@@ -4,7 +4,7 @@ export default EStyleSheet.create({
   heading: {
     fontSize: 15,
     color: "$white",
-    fontWeight: "500",
+    fontWeight: "800",
     paddingLeft: 5,
   },
   text: {

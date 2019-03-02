@@ -5,12 +5,13 @@ import JSONTree from "react-native-json-tree"
 import { Card } from "react-native-elements"
 
 import { Container } from "../components/Container"
-import { Header } from "../components/Header"
+import { Header, Options } from "../components/Header"
 
 const PaymentProcessHistory = ({ favorites }) => {
   return (
     <Container>
       <Header />
+      <Options text={"History"} />
       {favorites.map((favorite, index) => (
         <Card key={index}>
           <JSONTree data={favorite} />

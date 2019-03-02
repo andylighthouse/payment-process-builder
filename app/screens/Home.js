@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { StatusBar, View, Text } from "react-native"
+import { StatusBar, View, Alert } from "react-native"
 import { connect } from "react-redux"
 import { Card } from "react-native-elements"
 import JSONTree from "react-native-json-tree"
@@ -32,14 +32,25 @@ class Home extends Component {
   }
 
   handleOnReset = () => {
-    this.setState({ data: {} })
+    Alert.alert("Reset", "Do you want to restart?", [
+      { text: "cancel" },
+      { text: "OK", onPress: () => this.setState({ data: {} }) },
+    ])
   }
 
   handleAddFavorite = () => {
-    this.props.dispatch(add_favorite(this.state.data))
+    Alert.alert("Favorite", "Do you want to add this process to your favorites?", [
+      { text: "cancel" },
+      { text: "OK", onPress: () => this.props.dispatch(add_favorite(this.state.data)) },
+    ])
   }
 
-  handleDone = () => {}
+  handleDone = () => {
+    Alert.alert("Build", "Do you want to build this payment process?", [
+      { text: "cancel" },
+      { text: "OK", onPress: () => null },
+    ])
+  }
 
   render() {
     console.log(JSON.stringify(this.state))
@@ -49,7 +60,7 @@ class Home extends Component {
           <StatusBar translucent={false} barStyle="light-content" />
           <Header />
 
-          <Options>
+          <Options text={"Payment Process Builder"}>
             <MaterialIconButton onPress={this.handleDone} name={"build"} />
             <MaterialIconButton onPress={this.handleAddFavorite} name={"favorite"} />
             <MaterialCommunityIconsButton

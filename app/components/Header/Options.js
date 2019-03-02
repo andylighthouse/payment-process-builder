@@ -4,9 +4,9 @@ import { View } from "react-native"
 import styles from "./styles"
 import { HeadingText } from "../Text"
 
-const Options = ({ children }) => (
+const Options = ({ children, text }) => (
   <View style={styles.optionsContainer}>
-    <HeadingText text={"Payment Process Builder"} />
+    <HeadingText text={text} />
     {children}
   </View>
 )
