@@ -1,14 +1,18 @@
 import React from "react"
 import { Platform } from "react-native"
 import {
+  createSwitchNavigator,
   createStackNavigator,
   createBottomTabNavigator,
   createAppContainer,
 } from "react-navigation"
-
 import { TabBarIcon } from "../components/TabBarIcon"
+
 import HomeScreen from "../screens/Home"
 import HistoryScreen from "../screens/PaymentProcessHistory"
+import SignInScreen from "../screens/SignIn"
+
+const AuthStack = createStackNavigator({ SignIn: SignInScreen })
 
 const HomeStack = createStackNavigator(
   {
@@ -45,4 +49,14 @@ const TabNavigator = createBottomTabNavigator({
   HistoryStack,
 })
 
-export default createAppContainer(TabNavigator)
+const AppStack = createSwitchNavigator(
+  {
+    App: TabNavigator,
+    Auth: AuthStack,
+  },
+  {
+    initialRouteName: "Auth",
+  },
+)
+
+export default createAppContainer(AppStack)
