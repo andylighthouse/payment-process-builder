@@ -5,7 +5,6 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
-  console.log("REDUCER:  " + JSON.stringify(action.favorite))
   switch (action.type) {
     case ADD_FAVORITE:
       return {
