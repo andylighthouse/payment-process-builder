@@ -42,8 +42,7 @@ class Auth0LoginContainer extends React.Component {
     console.log(`AuthURL is:  ${authUrl}`)
 
     const result = await AuthSession.startAsync({
-      authUrl:
-        "https://dev-nsg9g39g.auth0.com/login?state=g6Fo2SA0VVRxOG00TUYyb3dqVlF4UV9oNFVMWkJUaVJTN1lZTKN0aWTZIGhQOFhQODA0a3ktYkI2OEIxVTAyZXg2a3IwVm1wU0N0o2NpZNkgZlpnQXVIbWJOWjBBM1BDUHdmX1ZfZzhqTGVaZDF6bUc&client=fZgAuHmbNZ0A3PCPwf_V_g8jLeZd1zmG&protocol=oauth2&response_type=token&scope=openid%20profile%20email&redirect_uri=https%3A%2F%2Fauth.expo.io%2F%40sepiariver%2Frain-city-rewards",
+      authUrl: `https://${authUrl}`,
     })
     console.log(result.type)
     if (result.type === "success") {
