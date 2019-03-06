@@ -22,9 +22,10 @@ class Auth0Provider extends React.Component {
       `${auth0Domain}/authorize` +
       toQueryString({
         client_id: auth0ClientId,
-        response_type: "token",
+        response_type: "id_token",
         scope: "openid profile email",
         redirect_uri: redirectUrl,
+        nonce: "NONCE",
       })
     console.log(`Redirect URL (add this to Auth0): ${redirectUrl}`)
     console.log(`AuthURL is:  ${authUrl}`)
@@ -36,7 +37,7 @@ class Auth0Provider extends React.Component {
     if (result.type === "success") {
       console.log(result)
       // let token = result.params.access_token
-      console.log(result.params)
+      console.log(jwtDecoder(result.params.id_token))
       this.props.navigation.navigate("App")
     }
   }
