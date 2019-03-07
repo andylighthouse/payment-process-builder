@@ -37,7 +37,7 @@ class Auth0Provider extends React.Component {
     })
 
     if (result.type === "success") {
-      console.log(result)
+      // send access token to the server
       // let token = result.params.access_token
       const email = jwtDecoder(result.params.id_token).email
       this.props.dispatch(saveUser(email))

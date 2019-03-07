@@ -11,6 +11,7 @@ import { TabBarIcon } from "../components/TabBarIcon"
 import HomeScreen from "../screens/Home"
 import HistoryScreen from "../screens/PaymentProcessHistory"
 import SignInScreen from "../screens/SignIn"
+import OptionScreen from "../screens/Option"
 
 const AuthStack = createStackNavigator({ SignIn: SignInScreen })
 
@@ -25,7 +26,7 @@ const HomeStack = createStackNavigator(
 
 HomeStack.navigationOptions = {
   tabBarLabel: "Home",
-  tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name={"home"} />,
+  tabBarIcon: () => <TabBarIcon name={"home"} />,
   header: null,
 }
 
@@ -40,13 +41,23 @@ const HistoryStack = createStackNavigator(
 
 HistoryStack.navigationOptions = {
   tabBarLabel: "History",
-  tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name={"history"} />,
+  tabBarIcon: () => <TabBarIcon name={"history"} />,
   header: null,
 }
+
+const OptionStack = createStackNavigator(
+  {
+    Option: OptionScreen,
+  },
+  {
+    headerMode: "none",
+  },
+)
 
 const TabNavigator = createBottomTabNavigator({
   HomeStack,
   HistoryStack,
+  OptionStack,
 })
 
 const AppStack = createSwitchNavigator(

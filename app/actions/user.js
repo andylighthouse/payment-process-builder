@@ -1,6 +1,6 @@
 export const SAVE_USER = "SAVE_USER"
 
-export const saveUser = user => ({
+export const saveUser = email => ({
   type: SAVE_USER,
-  user,
+  email,
 })
