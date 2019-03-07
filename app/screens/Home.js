@@ -11,7 +11,7 @@ import { MaterialIconButton } from "../components/Buttons"
 import { MaterialCommunityIconsButton } from "../components/Buttons"
 
 //actions
-import { add_favorite } from "../actions/favorite"
+import { addFavorite } from "../actions/favorite"
 
 class Home extends Component {
   constructor() {
@@ -41,7 +41,7 @@ class Home extends Component {
   handleAddFavorite = () => {
     Alert.alert("Favorite", "Do you want to add this process to your favorites?", [
       { text: "cancel" },
-      { text: "OK", onPress: () => this.props.dispatch(add_favorite(this.state.data)) },
+      { text: "OK", onPress: () => this.props.dispatch(addFavorite(this.state.data)) },
     ])
   }
 

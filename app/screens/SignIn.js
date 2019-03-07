@@ -2,7 +2,9 @@ import React from "react"
 import { AuthSession } from "expo"
 import { Button, StyleSheet, Text, View } from "react-native"
 import jwtDecoder from "jwt-decode"
+import { connect } from "react-redux"
 
+import { saveUser } from "../actions/user"
 const auth0ClientId = "fZgAuHmbNZ0A3PCPwf_V_g8jLeZd1zmG"
 const auth0Domain = "https://dev-nsg9g39g.auth0.com"
 
@@ -22,7 +24,7 @@ class Auth0Provider extends React.Component {
       `${auth0Domain}/authorize` +
       toQueryString({
         client_id: auth0ClientId,
-        response_type: "id_token",
+        response_type: "id_token token",
         scope: "openid profile email",
         redirect_uri: redirectUrl,
         nonce: "NONCE",
@@ -37,7 +39,8 @@ class Auth0Provider extends React.Component {
     if (result.type === "success") {
       console.log(result)
       // let token = result.params.access_token
-      console.log(jwtDecoder(result.params.id_token))
+      const email = jwtDecoder(result.params.id_token).email
+      this.props.dispatch(saveUser(email))
       this.props.navigation.navigate("App")
     }
   }
@@ -51,4 +54,4 @@ class Auth0Provider extends React.Component {
   }
 }
 
-export default Auth0Provider
+export default connect()(Auth0Provider)
