@@ -7,7 +7,7 @@ import { Card } from "react-native-elements"
 import { Container } from "../components/Container"
 import { Header, Options } from "../components/Header"
 
-const PaymentProcessHistory = ({ favorites }) => {
+const PaymentProcessHistory = ({ favorites, transactions }) => {
   return (
     <Container>
       <Header />
@@ -17,13 +17,22 @@ const PaymentProcessHistory = ({ favorites }) => {
           <JSONTree data={favorite} />
         </Card>
       ))}
+
+      <Text>Transactions</Text>
+      {transactions.map((transaction, index) => (
+        <Card key={index}>
+          <JSONTree data={transaction} />
+        </Card>
+      ))}
     </Container>
   )
 }
 
 const mapStateToProps = state => {
+  console.log("HERE" + state.user.transactions)
   return {
     favorites: state.favorite.favorites,
+    transactions: state.user.transactions,
   }
 }
 

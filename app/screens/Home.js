@@ -53,7 +53,6 @@ class Home extends Component {
   }
 
   render() {
-    console.log(JSON.stringify(this.state))
     return (
       <View style={{ flex: 1 }}>
         <Container>
