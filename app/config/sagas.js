@@ -1,10 +1,23 @@
 import { takeLatest, call, put } from "redux-saga/effects"
+import { SecureStore } from "expo"
+
 import { LOADFROMAPI, CONVERSION_ERROR, CONVERSION_RESULT } from "../actions/user"
 
-const getDataUrl = url => fetch(url).then(response => response.json())
-
 function* fetchData() {
-  const response = yield call(getDataUrl, "http://localhost:8000/api/transactions")
+  const token = yield SecureStore.getItemAsync("accessToken")
+
+  const callApi = ({ url, token }) =>
+    fetch(url, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then(response => response.json())
+
+  const response = yield call(callApi, {
+    url: "http://localhost:8000/api/transactions",
+    token: token,
+  })
 
   try {
     if (response) {

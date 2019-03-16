@@ -26,10 +26,10 @@ class Auth0Provider extends React.Component {
       `${auth0Domain}/authorize` +
       toQueryString({
         client_id: auth0ClientId,
-        response_type: "id_token token",
+        response_type: "token",
         scope: "openid profile email",
         redirect_uri: redirectUrl,
-        nonce: "NONCE",
+        audience: "https://dev-nsg9g39g.auth0.com/api/v2/",
       })
     console.log(`Redirect URL (add this to Auth0): ${redirectUrl}`)
     console.log(`AuthURL is:  ${authUrl}`)
@@ -40,8 +40,8 @@ class Auth0Provider extends React.Component {
 
     if (result.type === "success") {
       SecureStore.setItemAsync("accessToken", result.params.access_token)
-      const email = jwtDecoder(result.params.id_token).email
-      this.props.dispatch(saveUser(email))
+      // const email = jwtDecoder(result.params.id_token).email
+      // this.props.dispatch(saveUser(email))
       this.props.dispatch(loadFromApi())
       this.props.navigation.navigate("App")
     }
