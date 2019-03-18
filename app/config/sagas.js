@@ -4,7 +4,7 @@ import { SecureStore } from "expo"
 import { LOADFROMAPI, CONVERSION_ERROR, CONVERSION_RESULT } from "../actions/user"
 
 function* fetchData() {
-  const token = yield SecureStore.getItemAsync("accessToken")
+  const token = yield SecureStore.getItemAsync("idToken")
 
   const callApi = ({ url, token }) =>
     fetch(url, {

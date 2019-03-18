@@ -20,16 +20,16 @@ function toQueryString(params) {
 }
 
 class Auth0Provider extends React.Component {
-  _loginWithAuth0 = async () => {
+  _loginWithGoogle = async () => {
     const redirectUrl = AuthSession.getRedirectUrl()
     let authUrl =
-      `${auth0Domain}/authorize` +
+      `https://accounts.google.com/o/oauth2/v2/auth` +
       toQueryString({
-        client_id: auth0ClientId,
-        response_type: "token",
+        client_id: "99716742759-plfn17j7072eejng816c81ohpdci15jp.apps.googleusercontent.com",
+        response_type: "token id_token",
         scope: "openid profile email",
         redirect_uri: redirectUrl,
-        audience: "https://dev-nsg9g39g.auth0.com/api/v2/",
+        nonce: "nonce",
       })
     console.log(`Redirect URL (add this to Auth0): ${redirectUrl}`)
     console.log(`AuthURL is:  ${authUrl}`)
@@ -39,10 +39,15 @@ class Auth0Provider extends React.Component {
     })
 
     if (result.type === "success") {
-      SecureStore.setItemAsync("accessToken", result.params.access_token)
-      // const email = jwtDecoder(result.params.id_token).email
+      console.log(result)
+      //check nonce
+      SecureStore.setItemAsync("idToken", result.params.id_token)
+      const user = jwtDecoder(result.params.id_token)
+
+      console.log(user)
       // this.props.dispatch(saveUser(email))
       this.props.dispatch(loadFromApi())
+
       this.props.navigation.navigate("App")
     }
   }
@@ -50,10 +55,38 @@ class Auth0Provider extends React.Component {
   render() {
     return (
       <View>
-        <Button title="Login with Auth0" onPress={this._loginWithAuth0} />
+        <Button title="Login with Auth0" onPress={this._loginWithGoogle} />
       </View>
     )
   }
 }
 
 export default connect()(Auth0Provider)
+
+// _loginWithAuth0 = async () => {
+//   const redirectUrl = AuthSession.getRedirectUrl()
+//   let authUrl =
+//     `${auth0Domain}/authorize` +
+//     toQueryString({
+//       client_id: auth0ClientId,
+//       response_type: "token id_token",
+//       scope: "openid profile email",
+//       redirect_uri: redirectUrl,
+//       audience: "https://dev-nsg9g39g.auth0.com/api/v2/",
+//       nonce: "nounce",
+//     })
+//   console.log(`Redirect URL (add this to Auth0): ${redirectUrl}`)
+//   console.log(`AuthURL is:  ${authUrl}`)
+
+//   const result = await AuthSession.startAsync({
+//     authUrl: authUrl,
+//   })
+
+//   if (result.type === "success") {
+//     SecureStore.setItemAsync("accessToken", result.params.access_token)
+//     const user = jwtDecoder(result.params.id_token)
+//     this.props.dispatch(saveUser(user))
+//     this.props.dispatch(loadFromApi())
+//     this.props.navigation.navigate("App")
+//   }
+// }

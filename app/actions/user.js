@@ -4,9 +4,9 @@ export const CONVERSION_ERROR = "CONVERSION_ERROR"
 
 export const LOADFROMAPI = "LOADFROMAPI"
 
-export const saveUser = email => ({
+export const saveUser = user => ({
   type: SAVE_USER,
-  email,
+  user,
 })
 
 export const loadFromApi = () => ({

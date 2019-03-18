@@ -5,17 +5,18 @@ const initialState = {
   email: null,
   transactions: [],
   error: null,
+  user: null,
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case SAVE_USER:
-      if (action.email) {
-        AsyncStorage.setItem("userEmail", action.email)
-      }
-      return {
-        ...state,
-        email: action.email || state.email,
+      console.log("fuck" + action)
+      if (action.user) {
+        return {
+          ...state,
+          user: action.user,
+        }
       }
     case CONVERSION_RESULT:
       return {
