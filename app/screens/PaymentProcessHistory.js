@@ -31,7 +31,7 @@ const PaymentProcessHistory = ({ favorites, transactions }) => {
 const mapStateToProps = state => {
   return {
     favorites: state.favorite.favorites,
-    transactions: state.user.transactions,
+    transactions: state.transaction.transactions,
   }
 }
 

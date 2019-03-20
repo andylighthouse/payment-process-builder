@@ -54,6 +54,12 @@ const OptionStack = createStackNavigator(
   },
 )
 
+OptionStack.navigationOptions = {
+  tabBarLabel: "Option",
+  tabBarIcon: () => <TabBarIcon name={"more-horiz"} />,
+  header: null,
+}
+
 const TabNavigator = createBottomTabNavigator({
   HomeStack,
   HistoryStack,

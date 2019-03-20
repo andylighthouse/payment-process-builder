@@ -1,16 +1,33 @@
 import React from "react"
-import { StatusBar, View, Text } from "react-native"
+import { Alert, Text, Button } from "react-native"
 import { connect } from "react-redux"
 
 import { Container } from "../components/Container"
 import { Header, Options } from "../components/Header"
 
-const Option = ({ email }) => {
+import { logoutUser } from "../actions/user"
+
+const handleLogout = (logoutUser, navigation) => {
+  Alert.alert("Logout", "Do you want to logout?", [
+    { text: "cancel" },
+    {
+      text: "OK",
+      onPress: () => {
+        logoutUser()
+        navigation.navigate("Auth")
+      },
+    },
+  ])
+}
+
+const Option = ({ email, logoutUser, navigation }) => {
+  console.log(navigation)
   return (
     <Container>
       <Header />
-      <Options text={"Option"} />
+      <Options text={"Options"} />
       <Text>logged in as: {email}</Text>
+      <Button title="Logout" onPress={() => handleLogout(logoutUser, navigation)} />
     </Container>
   )
 }
@@ -21,4 +38,11 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(Option)
+const bindActionsToDispatch = dispatch => ({
+  logoutUser: () => dispatch(logoutUser()),
+})
+
+export default connect(
+  mapStateToProps,
+  bindActionsToDispatch,
+)(Option)
