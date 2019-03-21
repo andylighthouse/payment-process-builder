@@ -21,7 +21,6 @@ const handleLogout = (logoutUser, navigation) => {
 }
 
 const Option = ({ email, logoutUser, navigation }) => {
-  console.log(navigation)
   return (
     <Container>
       <Header />
@@ -34,7 +33,7 @@ const Option = ({ email, logoutUser, navigation }) => {
 
 const mapStateToProps = state => {
   return {
-    email: state.user.email,
+    email: state.user.user.email,
   }
 }
 
