@@ -3,16 +3,16 @@ import { SecureStore } from "expo"
 
 export const TRANSACTION_RESULT = "TRANSACTION_RESULT"
 export const TRANSACTION_ERROR = "TRANSACTION_ERROR"
-export const LOADFROMAPI = "LOADFROMAPI"
+export const LOADTRANSACTIONS = "LOADTRANSACTIONS"
 
-export const loadFromApi = () => ({
-  type: LOADFROMAPI,
+export const loadTransactions = () => ({
+  type: LOADTRANSACTIONS,
 })
 
 export function* fetchData() {
   const token = yield SecureStore.getItemAsync("idToken")
 
-  const callApi = ({ url, token }) =>
+  const callApi = url =>
     fetch(url, {
       method: "GET",
       headers: {
@@ -20,11 +20,9 @@ export function* fetchData() {
       },
     }).then(response => response.json())
 
-  const response = yield call(callApi, {
-    url: "http://localhost:8000/api/transactions",
-    token: token,
-  })
-
+  const response = yield call(callApi, "https://lftp.staging.paywith.ca/api/transactions")
+  console.log("RESPONSE")
+  console.log(response)
   try {
     if (response) {
       yield put({ type: TRANSACTION_RESULT, result: response })

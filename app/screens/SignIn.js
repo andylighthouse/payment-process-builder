@@ -1,12 +1,14 @@
 import React, { Component } from "react"
 import { AuthSession } from "expo"
-import { Button, View, AsyncStorage } from "react-native"
+import { Button, View } from "react-native"
 import jwtDecoder from "jwt-decode"
 import { connect } from "react-redux"
 import { SecureStore } from "expo"
 
 import { saveUser } from "../actions/user"
-import { loadFromApi } from "../actions/transaction"
+import { loadTransactions } from "../actions/transaction"
+import { sendPushToken } from "../actions/pushNotification"
+import store from "../config/store"
 
 function toQueryString(params) {
   return (
@@ -17,8 +19,8 @@ function toQueryString(params) {
   )
 }
 
-class GoogleAuthProvider extends Component {
-  _loginWithGoogle = async () => {
+class Signin extends Component {
+  loginWithGoogle = async () => {
     const redirectUrl = AuthSession.getRedirectUrl()
     let authUrl =
       `https://accounts.google.com/o/oauth2/v2/auth` +
@@ -35,13 +37,14 @@ class GoogleAuthProvider extends Component {
     })
 
     if (result.type === "success") {
-      //make and check nonce
+      //need to make and check nonce
       SecureStore.setItemAsync("idToken", result.params.id_token)
       SecureStore.setItemAsync("accessToken", result.params.access_token)
       const user = jwtDecoder(result.params.id_token)
 
+      this.props.dispatch(sendPushToken())
       this.props.dispatch(saveUser(user))
-      this.props.dispatch(loadFromApi())
+      this.props.dispatch(loadTransactions())
       this.props.navigation.navigate("App")
     }
   }
@@ -49,10 +52,10 @@ class GoogleAuthProvider extends Component {
   render() {
     return (
       <View>
-        <Button title="Login with Google" onPress={this._loginWithGoogle} />
+        <Button title="Login with Google" onPress={this.loginWithGoogle} />
       </View>
     )
   }
 }
 
-export default connect()(GoogleAuthProvider)
+export default connect()(Signin)
