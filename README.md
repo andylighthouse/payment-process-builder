@@ -1,1 +1,1 @@
-# Playing around with React Native app with Expo 
+Playing around with React Native with Expo 
